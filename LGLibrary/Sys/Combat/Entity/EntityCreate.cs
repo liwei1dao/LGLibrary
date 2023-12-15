@@ -1,6 +1,7 @@
 namespace LG.Combat;
 public abstract partial class Entity
 {
+    public static CombatContext Master => CombatContext.Instance;
     public static bool EnableLog { get; set; } = false;
     public static long BaseRevertTicks { get; set; }
     public static long NewInstanceId()
@@ -20,6 +21,11 @@ public abstract partial class Entity
         entity.InstanceId = NewInstanceId();
         if (id == 0) entity.Id = entity.InstanceId;
         else entity.Id = id;
+        if (!Master.Entities.ContainsKey(entityType))
+        {
+            Master.Entities.Add(entityType, new List<Entity>());
+        }
+        Master.Entities[entityType].Add(entity);
         return entity;
     }
 

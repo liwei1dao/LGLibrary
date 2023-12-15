@@ -7,6 +7,7 @@ public abstract class Component
 {
     public Entity Entity { get; set; }
     public bool IsDisposed { get; set; }
+    public virtual bool DefaultEnable { get; set; } = true;
     private bool enable = false;
     public bool Enable
     {
@@ -22,7 +23,7 @@ public abstract class Component
             return enable;
         }
     }
-
+    public bool Disable => enable == false;
     public virtual void LGInit(Entity entity, params object[] agrs)
     {
         Entity = entity;
@@ -36,6 +37,10 @@ public abstract class Component
 
     }
     public virtual void OnDisable()
+    {
+
+    }
+    public virtual void LGUpdate(float time)
     {
 
     }

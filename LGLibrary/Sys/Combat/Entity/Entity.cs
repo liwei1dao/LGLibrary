@@ -34,6 +34,10 @@ public abstract partial class Entity
     {
 
     }
+    public virtual void LGUpdate(float time)
+    {
+
+    }
     public virtual void OnDestroy()
     {
 
@@ -58,6 +62,10 @@ public abstract partial class Entity
         }
         Components.Clear();
         InstanceId = 0;
+        if (Master.Entities.ContainsKey(GetType()))
+        {
+            Master.Entities[GetType()].Remove(this);
+        }
     }
     #region 组件
     public T? GetParent<T>() where T : Entity
@@ -76,6 +84,7 @@ public abstract partial class Entity
         component.Entity = this;
         component.LGInit(this, agrs);
         Components.Add(typeof(T), component);
+        Master.AllComponents.Add(component);
         component.LGStart();
         return component;
     }
