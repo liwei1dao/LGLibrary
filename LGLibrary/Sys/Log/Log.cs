@@ -1,17 +1,21 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace LG;
+
 public static class Log
 {
-    public static void Debug(string log)
+    public static void Exception(string msg)
     {
-        UnityEngine.Debug.Log(log);
+        throw new Exception(msg);
+    }
+    public static void Error(string msg)
+    {
+        UnityEngine.Debug.LogError(msg);
     }
 
-    public static void Error(string log)
+    public static void Debug(string msg)
     {
-        UnityEngine.Debug.LogError(log);
+        UnityEngine.Debug.LogError(msg);
     }
-    public static void Error(Exception e)
-    {
-        UnityEngine.Debug.LogException(e);
-    }
+
 }
