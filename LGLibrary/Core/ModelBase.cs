@@ -44,6 +44,7 @@ public interface IModule
     void LGClose();
 }
 
+[Serializable]
 public abstract class ModuleBase : IModule
 {
     /// <summary>

@@ -1,11 +1,12 @@
 using System.Collections;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace LG;
 
 public class ModuleManager : MonoBehaviour
 {
-
+    [SerializeField, LabelText("模块列表")]
     protected Dictionary<string, ModuleBase> Modules = new();
 
     #region 单例接口
