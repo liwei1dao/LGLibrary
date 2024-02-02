@@ -1,5 +1,7 @@
-namespace LG;
-public interface ILoadViewComp : ViewComp, IModelCompBase
+namespace LG
 {
-    void UpdateProgress(float progress, string describe);
+    public interface ILoadViewComp : ViewComp, IModelCompBase
+    {
+        void UpdateProgress(float progress, string describe);
+    }
 }

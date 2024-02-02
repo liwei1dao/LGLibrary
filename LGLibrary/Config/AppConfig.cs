@@ -1,80 +1,82 @@
 using UnityEngine;
 
-namespace LG;
-
-public static class AppConfig
+namespace LG
 {
-    public static bool IsOpenVersionCheck;                                  //是否开启版本检测
-    public static string ResServiceAddr = string.Empty;                                       //服务器地址
-    public static AppResModel AppResModel = AppResModel.debug;              //资源加载模式
-    public static AppPlatform TargetPlatform = AppPlatform.Windows;         //当前平台
-    public static string ResZipPassword = "liwei1dao";                      //内部资源压缩密码
-    public static string ResFileSuffix = ".1dao";
-    public const string mApplogAddress = "Log";
-    public const string mAppExternalAddress = "AppResources";
-    public const string mAppResourcesTemp = "AppResourcesTemp";
 
-    public static string PlatformRoot
+    public static class AppConfig
     {
-        get
+        public static bool IsOpenVersionCheck;                                  //是否开启版本检测
+        public static string ResServiceAddr = string.Empty;                                       //服务器地址
+        public static AppResModel AppResModel = AppResModel.debug;              //资源加载模式
+        public static AppPlatform TargetPlatform = AppPlatform.Windows;         //当前平台
+        public static string ResZipPassword = "liwei1dao";                      //内部资源压缩密码
+        public static string ResFileSuffix = ".1dao";
+        public const string mApplogAddress = "Log";
+        public const string mAppExternalAddress = "AppResources";
+        public const string mAppResourcesTemp = "AppResourcesTemp";
+
+        public static string PlatformRoot
         {
-            switch (Application.platform)
+            get
             {
-                case RuntimePlatform.IPhonePlayer:
-                    return Application.persistentDataPath;
-                case RuntimePlatform.Android:
-                    return Application.persistentDataPath;
-                case RuntimePlatform.WindowsPlayer:
-                    return Application.persistentDataPath;
-                case RuntimePlatform.WindowsEditor:
-                    return Application.dataPath.Substring(0, Application.dataPath.Length - "Assets/".Length);
-                default:
-                    return Application.dataPath.Substring(0, Application.dataPath.Length - "Assets/".Length);
+                switch (Application.platform)
+                {
+                    case RuntimePlatform.IPhonePlayer:
+                        return Application.persistentDataPath;
+                    case RuntimePlatform.Android:
+                        return Application.persistentDataPath;
+                    case RuntimePlatform.WindowsPlayer:
+                        return Application.persistentDataPath;
+                    case RuntimePlatform.WindowsEditor:
+                        return Application.dataPath.Substring(0, Application.dataPath.Length - "Assets/".Length);
+                    default:
+                        return Application.dataPath.Substring(0, Application.dataPath.Length - "Assets/".Length);
+                }
+            }
+        }                                        //平台沙盒存储根目录
+
+        public static string GetstreamingAssetsPath
+        {
+            get
+            {
+                switch (Application.platform)
+                {
+                    case RuntimePlatform.IPhonePlayer:
+                        return Application.streamingAssetsPath;
+                    case RuntimePlatform.Android:
+                        return Application.streamingAssetsPath;
+                    case RuntimePlatform.WindowsPlayer:
+                        return Application.streamingAssetsPath;
+                    case RuntimePlatform.WindowsEditor:
+                        return Application.streamingAssetsPath;
+                    default:
+                        return Application.streamingAssetsPath;
+                }
             }
         }
-    }                                        //平台沙盒存储根目录
 
-    public static string GetstreamingAssetsPath
-    {
-        get
+        public static string AppLogAddress
         {
-            switch (Application.platform)
+            get
             {
-                case RuntimePlatform.IPhonePlayer:
-                    return Application.streamingAssetsPath;
-                case RuntimePlatform.Android:
-                    return Application.streamingAssetsPath;
-                case RuntimePlatform.WindowsPlayer:
-                    return Application.streamingAssetsPath;
-                case RuntimePlatform.WindowsEditor:
-                    return Application.streamingAssetsPath;
-                default:
-                    return Application.streamingAssetsPath;
+                return Path.Combine(PlatformRoot, mApplogAddress);
             }
         }
-    }
 
-    public static string AppLogAddress
-    {
-        get
+        public static string AppAssetBundleTemp
         {
-            return Path.Combine(PlatformRoot, mApplogAddress);
+            get
+            {
+                return Path.Combine(PlatformRoot, mAppResourcesTemp);
+            }
         }
-    }
 
-    public static string AppAssetBundleTemp
-    {
-        get
+        public static string AppAssetBundleAddress
         {
-            return Path.Combine(PlatformRoot, mAppResourcesTemp);
-        }
-    }
-
-    public static string AppAssetBundleAddress
-    {
-        get
-        {
-            return Path.Combine(PlatformRoot, mAppExternalAddress);
+            get
+            {
+                return Path.Combine(PlatformRoot, mAppExternalAddress);
+            }
         }
     }
 }

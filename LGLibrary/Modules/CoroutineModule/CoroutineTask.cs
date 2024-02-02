@@ -1,73 +1,75 @@
 using System.Collections;
 
-namespace LG;
-
-public class CoroutineTask
+namespace LG
 {
-    public bool Running
+
+    public class CoroutineTask
     {
-        get
+        public bool Running
         {
-            return running;
-        }
-    }
-
-    public bool Paused
-    {
-        get
-        {
-            return paused;
-        }
-    }
-    public delegate void FinishedHandler(CoroutineTask task, bool manual);
-    public event FinishedHandler Finished;
-    IEnumerator coroutine;
-    bool running;
-    bool paused;
-
-    public CoroutineTask(IEnumerator c)
-    {
-        coroutine = c;
-        Start();
-    }
-
-    public void Pause()
-    {
-        paused = true;
-    }
-
-    public void Unpause()
-    {
-        paused = false;
-    }
-
-    public void Start()
-    {
-        running = true;
-    }
-
-    public void Stop()
-    {
-        running = false;
-    }
-
-    public IEnumerator CallWrapper()
-    {
-        yield return null;
-        IEnumerator e = coroutine;
-        while (running)
-        {
-            if (paused)
-                yield return null;
-            else
+            get
             {
-                if (e != null && e.MoveNext())
-                {
-                    yield return e.Current;
-                }
+                return running;
+            }
+        }
+
+        public bool Paused
+        {
+            get
+            {
+                return paused;
+            }
+        }
+        public delegate void FinishedHandler(CoroutineTask task, bool manual);
+        public event FinishedHandler Finished;
+        IEnumerator coroutine;
+        bool running;
+        bool paused;
+
+        public CoroutineTask(IEnumerator c)
+        {
+            coroutine = c;
+            Start();
+        }
+
+        public void Pause()
+        {
+            paused = true;
+        }
+
+        public void Unpause()
+        {
+            paused = false;
+        }
+
+        public void Start()
+        {
+            running = true;
+        }
+
+        public void Stop()
+        {
+            running = false;
+        }
+
+        public IEnumerator CallWrapper()
+        {
+            yield return null;
+            IEnumerator e = coroutine;
+            while (running)
+            {
+                if (paused)
+                    yield return null;
                 else
                 {
-                    running = false;
+                    if (e != null && e.MoveNext())
+                    {
+                        yield return e.Current;
+                    }
+                    else
+                    {
+                        running = false;
+                    }
                 }
             }
         }

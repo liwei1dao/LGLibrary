@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <TargetFramework>net471</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -11,8 +12,6 @@
     <Reference Include="UnityEngine.UIModule">
       <HintPath>libs\UnityEngine\UnityEngine.UIModule.dll</HintPath>
     </Reference>
-
-
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>libs\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
@@ -34,7 +33,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.0" />
   </ItemGroup>
   
 </Project>

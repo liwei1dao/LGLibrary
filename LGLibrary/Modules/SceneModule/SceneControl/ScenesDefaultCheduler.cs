@@ -1,24 +1,26 @@
-namespace LG;
-
-
-public class ScenesDefaultCheduler : IScenesChedulerBase
+namespace LG
 {
-    //private SceneLoadingViewComp LoadingView;
 
-    public void StartLoadChanage()
-    {
-        //if (LoadingView == null)
-        //    LoadingView = SceneModule.Instance.GetLoadingViewComp();
-        //LoadingView.Show();
-    }
 
-    public void UpdataProgress(float Progress)
+    public class ScenesDefaultCheduler : IScenesChedulerBase
     {
-        //LoadingView.UpdataProgress(Progress);
-    }
+        //private SceneLoadingViewComp LoadingView;
 
-    public void EndLoadChanage()
-    {
-        //LoadingView.Hide();
+        public void StartLoadChanage()
+        {
+            //if (LoadingView == null)
+            //    LoadingView = SceneModule.Instance.GetLoadingViewComp();
+            //LoadingView.Show();
+        }
+
+        public void UpdataProgress(float Progress)
+        {
+            //LoadingView.UpdataProgress(Progress);
+        }
+
+        public void EndLoadChanage()
+        {
+            //LoadingView.Hide();
+        }
     }
 }

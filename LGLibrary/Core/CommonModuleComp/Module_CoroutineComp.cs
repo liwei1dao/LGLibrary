@@ -1,52 +1,54 @@
 using System.Collections;
 
-namespace LG;
-
-public class Module_CoroutineComp : ModelCompBase
+namespace LG
 {
-    /// <summary>
-    /// 模块内协程任务列表
-    /// </summary>
-    protected List<CoroutineTask> CoroutineTasks;
-    public override void LGLoad(ModuleBase _ModelContorl, params object[] _Agr)
+
+    public class Module_CoroutineComp : ModelCompBase
     {
-        if (CoroutineModule.Instance == null)
+        /// <summary>
+        /// 模块内协程任务列表
+        /// </summary>
+        protected List<CoroutineTask> CoroutineTasks;
+        public override void LGLoad(ModuleBase _ModelContorl, params object[] _Agr)
         {
-            Log.Error("CoroutineModule User but No Load");
-            return;
+            if (CoroutineModule.Instance == null)
+            {
+                Log.Error("CoroutineModule User but No Load");
+                return;
+            }
+            CoroutineTasks = new List<CoroutineTask>();
+            base.LGLoad(_ModelContorl);
+            base.LoadEnd();
         }
-        CoroutineTasks = new List<CoroutineTask>();
-        base.LGLoad(_ModelContorl);
-        base.LoadEnd();
-    }
 
-    public CoroutineTask StartCoroutine(IEnumerator coroutine)
-    {
-        CoroutineTask task = CoroutineModule.Instance.StartCoroutineTask(coroutine);
-        task.Finished += TaskFinshed;
-        CoroutineTasks.Add(task);
-        return task;
-    }
-
-    public void StopCoroutine(CoroutineTask task)
-    {
-        task.Stop();
-    }
-
-    public void StopAllCoroutine()
-    {
-        for (int i = 1; i < CoroutineTasks.Count; i++)
+        public CoroutineTask StartCoroutine(IEnumerator coroutine)
         {
-            StopCoroutine(CoroutineTasks[i]);
+            CoroutineTask task = CoroutineModule.Instance.StartCoroutineTask(coroutine);
+            task.Finished += TaskFinshed;
+            CoroutineTasks.Add(task);
+            return task;
         }
-    }
 
-    private void TaskFinshed(CoroutineTask task, bool IsFinsh)
-    {
-        if (CoroutineTasks.Contains(task))
+        public void StopCoroutine(CoroutineTask task)
         {
-            CoroutineTasks.Remove(task);
+            task.Stop();
         }
-    }
 
+        public void StopAllCoroutine()
+        {
+            for (int i = 1; i < CoroutineTasks.Count; i++)
+            {
+                StopCoroutine(CoroutineTasks[i]);
+            }
+        }
+
+        private void TaskFinshed(CoroutineTask task, bool IsFinsh)
+        {
+            if (CoroutineTasks.Contains(task))
+            {
+                CoroutineTasks.Remove(task);
+            }
+        }
+
+    }
 }

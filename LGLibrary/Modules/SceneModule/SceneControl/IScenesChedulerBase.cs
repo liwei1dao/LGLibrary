@@ -1,11 +1,13 @@
-namespace LG;
-
-/// <summary>
-/// 场景调度器
-/// </summary>
-public interface IScenesChedulerBase
+namespace LG
 {
-    void StartLoadChanage();
-    void UpdataProgress(float Progress);
-    void EndLoadChanage();
+
+    /// <summary>
+    /// 场景调度器
+    /// </summary>
+    public interface IScenesChedulerBase
+    {
+        void StartLoadChanage();
+        void UpdataProgress(float Progress);
+        void EndLoadChanage();
+    }
 }

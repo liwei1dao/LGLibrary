@@ -14,5 +14,5 @@
     }
   ],
   "omnisharp.useModernNet": false,
-  "dotnet.defaultSolution": "LGLibrary.sln"
+  "dotnet.defaultSolution": "LGLibrary.sln",
 }
