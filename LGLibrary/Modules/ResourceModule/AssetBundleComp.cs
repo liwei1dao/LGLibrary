@@ -1,4 +1,7 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -63,7 +66,7 @@ namespace LG
         IEnumerator AssemblyAsset(Action CallBack)
         {
 #if UNITY_EDITOR || UNITY_EDITOR_WIN
-      string resPath = "file://" + AppConfig.GetstreamingAssetsPath + "/Res.zip";
+            string resPath = "file://" + AppConfig.GetstreamingAssetsPath + "/Res.zip";
 #else
             string resPath = AppConfig.GetstreamingAssetsPath + "/Res.zip";
 #endif

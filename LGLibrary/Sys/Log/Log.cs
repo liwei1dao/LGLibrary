@@ -7,7 +7,7 @@ namespace LG
     {
         public static void Exception(string msg)
         {
-            throw new Exception(msg);
+            UnityEngine.Debug.LogException(new System.Exception(msg));
         }
         public static void Error(string msg)
         {

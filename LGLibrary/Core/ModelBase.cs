@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LG
@@ -63,7 +65,7 @@ namespace LG
         /// <summary>
         /// 组件列表
         /// </summary>
-        protected List<ModelCompBase> Comps = new List<ModelCompBase>();
+        protected List<ModelCompBase> Comps = new();
         protected Module_CoroutineComp CoroutineComp;                               //协程组件（需要则初始化）
         protected Module_ResourceComp ResourceComp;                                 //资源管理组件（需要则初始化）
 

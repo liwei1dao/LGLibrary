@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace LG
 {
     /// <summary>
@@ -37,6 +39,21 @@ namespace LG
                 Log.Error("文件不存在:" + Path);
                 return string.Empty;
             }
+        }
+
+        /// <summary>
+        /// 复制文件
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="targetPath"></param>
+        public static void CopyFile(string filePath, string targetPath)
+        {
+            string targetDir = Path.GetDirectoryName(targetPath);
+            if (!Directory.Exists(targetDir))
+            {
+                Directory.CreateDirectory(targetDir);
+            }
+            System.IO.File.Copy(filePath, targetPath, true);
         }
     }
 }

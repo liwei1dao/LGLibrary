@@ -1,13 +1,13 @@
-﻿namespace LG
-{
-    using Sirenix.OdinInspector;
-    using UnityEngine;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
+namespace LG
+{
     public abstract class LGMain : MonoBehaviour
     {
-        [LabelText("App资源加载方式")]
+        [SerializeField, LabelText("App资源加载方式")]
         protected AppResModel AppResModel;
-        [LabelText("资源服务器地址")]
+        [SerializeField, LabelText("资源服务器地址")]
         protected string ResServiceAddr = string.Empty;
 
         protected virtual void Awake()
@@ -28,8 +28,7 @@
             AppConfig.TargetPlatform = AppPlatform.Windows;
 #endif
         }
-
-
         protected abstract void StartApp();
     }
+
 }

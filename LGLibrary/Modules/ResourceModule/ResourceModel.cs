@@ -8,6 +8,9 @@ namespace LG
     public class ResourceModule : ModuleBase<ResourceModule>
     {
         private AssetBundleComp BundleResComp;
+#if UNITY_EDITOR
+        private EditorResourComp EditorResComp;
+#endif
         public ILoadViewComp LoadViewComp;
         public override void LGLoad(params object[] agrs)
         {
@@ -19,7 +22,7 @@ namespace LG
             else
             {
 #if UNITY_EDITOR
-        EditorResComp = AddComp<EditorResourComp>();
+                EditorResComp = AddComp<EditorResourComp>();
 #else
                 BundleResComp = AddComp<AssetBundleComp>();
 #endif
@@ -90,7 +93,7 @@ namespace LG
             else
             {
 #if UNITY_EDITOR
-        return EditorResComp.LoadAsset<T>(ModelName, BundlePath, AssetName);
+                return EditorResComp.LoadAsset<T>(ModelName, BundlePath, AssetName);
 #else
                 return BundleResComp.LoadAsset<T>(ModelName, BundlePath, AssetName);
 #endif
@@ -114,7 +117,7 @@ namespace LG
             else
             {
 #if UNITY_EDITOR
-        return EditorResComp.LoadAllAsset<T>(ModelName, BundlePath, AssetName);
+                return EditorResComp.LoadAllAsset<T>(ModelName, BundlePath, AssetName);
 #else
                 return BundleResComp.LoadAllAsset<T>(ModelName, BundlePath, AssetName);
 #endif
@@ -133,7 +136,7 @@ namespace LG
             else
             {
 #if UNITY_EDITOR
-        return EditorResComp.LoadByteFile(ModelName, BundlePath, AssetName);
+                return EditorResComp.LoadByteFile(ModelName, BundlePath, AssetName);
 #else
                 ModelName = ModelName.ToLower();
                 BundlePath = BundlePath.ToLower();
@@ -157,7 +160,7 @@ namespace LG
             else
             {
 #if UNITY_EDITOR
-        return EditorResComp.LoadLuaFile(ModelName, BundlePath, AssetName);
+                return EditorResComp.LoadLuaFile(ModelName, BundlePath, AssetName);
 #else
                 ModelName = ModelName.ToLower();
                 BundlePath = BundlePath.ToLower();
@@ -183,7 +186,7 @@ namespace LG
             else
             {
 #if UNITY_EDITOR
-        return EditorResComp.LoadProtoFile(ModelName, BundlePath, AssetName);
+                return EditorResComp.LoadProtoFile(ModelName, BundlePath, AssetName);
 #else
                 ModelName = ModelName.ToLower();
                 BundlePath = BundlePath.ToLower();
@@ -204,7 +207,7 @@ namespace LG
             else
             {
 #if UNITY_EDITOR
-        EditorResComp.UnloadAsset(ModelName, BundlePath, AssetName);
+                EditorResComp.UnloadAsset(ModelName, BundlePath, AssetName);
 #else
                 BundleResComp.UnloadAsset(ModelName, BundlePath, AssetName);
 #endif
@@ -226,7 +229,7 @@ namespace LG
             else
             {
 #if UNITY_EDITOR
-        EditorResComp.UnloadModel(ModelName);
+                EditorResComp.UnloadModel(ModelName);
 #else
                 BundleResComp.UnloadModel(ModelName);
 #endif
