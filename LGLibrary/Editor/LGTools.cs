@@ -11,7 +11,7 @@ namespace LG
         [MenuItem("Tools/LGTools")]
         public static void CreateView()
         {
-            LGTools tools = GetWindowWithRect<LGTools>(new Rect(100, 100, 600, 400), false, "LG工具集合");
+            LGTools tools = GetWindowWithRect<LGTools>(new Rect(100, 100, 600, 400), false, "LGTools");
             tools.Init();
         }
 
