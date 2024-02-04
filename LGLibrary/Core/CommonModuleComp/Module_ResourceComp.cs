@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace LG
@@ -6,6 +7,8 @@ namespace LG
     /// <summary>
     /// 模块资源组件
     /// </summary>
+    [Serializable]
+    [ModelCompBase("资源组件", 1)]
     public class Module_ResourceComp : ModelCompBase
     {
         #region 构架

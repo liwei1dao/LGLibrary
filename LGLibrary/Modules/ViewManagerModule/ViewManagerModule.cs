@@ -7,52 +7,72 @@ namespace LG
 
     public class GUIManagerModule : ModuleBase<GUIManagerModule>
     {
-        private GameObject mLowUIRoot;                //底优先级显示节点
-        private GameObject mNormalUIRoot;             //中优先级显示节点
-        private GameObject mHightUIRoot;              //高优先级显示节点
+        private GameObject uiRoot;                      //底优先级显示节点
+        private Camera uiCamera;                        //底优先级显示相机
+        private Vector2 mViewSzie;                      //UI界面尺寸
+        private float mMatch;                           //UI适配权重
+        private List<ViewComp> mLowViewComps;           //底优先级UI面板
+        private List<ViewComp> mNormalViewComps;        //底优先级UI面板
+        private List<ViewComp> mHightViewComps;         //底优先级UI面板
 
-        private Camera mLowUICamera;                //底优先级显示相机
-        private Camera mNormalUCamera;             //中优先级显示相机
-        private Camera mHightUICamera;              //高优先级显示相机
-
-        private Vector2 mViewSzie;                    //UI界面尺寸
-        private List<ViewComp> mLowViewComps;         //底优先级UI面板
-        private List<ViewComp> mNormalViewComps;      //底优先级UI面板
-        private List<ViewComp> mHightViewComps;       //底优先级UI面板
-
-        public GameObject LowUIRoot
+        public GameObject UIRoot
         {
-            get { return mLowUIRoot; }
+            get { return uiRoot; }
         }
 
-        public GameObject NormalUIRoot
+        public Camera UICamera
         {
-            get { return mNormalUIRoot; }
-        }
-
-        public GameObject HightUIRoot
-        {
-            get { return mHightUIRoot; }
-        }
-
-        public Camera LowUICamera
-        {
-            get { return mLowUICamera; }
-        }
-
-        public Camera NormalUICamera
-        {
-            get { return mNormalUCamera; }
-        }
-
-        public Camera HightUICamera
-        {
-            get { return mHightUICamera; }
+            get { return uiCamera; }
         }
 
         public Vector2 ViewSzie
         {
             get { return mViewSzie; }
+        }
+        public override void LGLoad(params object[] agr)
+        {
+            ResourceComp = AddComp<Module_ResourceComp>();
+            if (agr.Length == 2)
+            {
+                mViewSzie = (Vector2)agr[0];
+                mMatch = (float)agr[1];
+                mLowViewComps = new List<ViewComp>();
+                mNormalViewComps = new List<ViewComp>();
+                mHightViewComps = new List<ViewComp>();
+                CreateUIRoot();
+                base.LGLoad(agr);
+            }
+            else
+            {
+                Debug.LogError("ViewManagerModule 启动参数错误，请检查代码");
+            }
+        }
+        private void CreateUIRoot()
+        {
+            uiRoot = GameObject.Find("UIRoot");
+            if (uiRoot == null)
+            {
+                uiRoot = CreateObj("Prefab", "UIRoot", null);
+                uiRoot.name = "UIRoot";
+            }
+            GameObject.DontDestroyOnLoad(uiRoot);
+            Camera _cm0 = GameObject.Find("Camera").GetComponent<Camera>();
+            _cm0.orthographic = true;
+            _cm0.clearFlags = CameraClearFlags.Depth;
+            _cm0.nearClipPlane = -100;
+            _cm0.farClipPlane = 100;
+            _cm0.orthographicSize = 20;
+            _cm0.depth = 0;
+            _cm0.cullingMask = LayerMask.GetMask("UI");
+            uiCamera = _cm0;
+            Canvas _ca0 = uiRoot.GetComponent<Canvas>();
+            _ca0.renderMode = RenderMode.ScreenSpaceOverlay;
+            _ca0.worldCamera = _cm0;
+            _ca0.sortingOrder = 0;
+            UnityEngine.UI.CanvasScaler _cs0 = uiRoot.GetComponent<UnityEngine.UI.CanvasScaler>();
+            _cs0.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            _cs0.referenceResolution = mViewSzie;
+            _cs0.matchWidthOrHeight = mMatch;
         }
 
         public GameObject CreateView(ViewComp View, GameObject ViewAsset)
@@ -62,20 +82,16 @@ namespace LG
                 Debug.LogError("加载的界面 UI prefab 不存在");
                 return null;
             }
-            GameObject UIRoot = null;
             List<ViewComp> views = null;
             switch (View.GetLevel())
             {
                 case UILevel.LowUI:
-                    UIRoot = LowUIRoot;
                     views = mLowViewComps;
                     break;
                 case UILevel.NormalUI:
-                    UIRoot = NormalUIRoot;
                     views = mNormalViewComps;
                     break;
                 case UILevel.HightUI:
-                    UIRoot = HightUIRoot;
                     views = mHightViewComps;
                     break;
             }
@@ -96,20 +112,16 @@ namespace LG
 
         public GameObject CreateEmptyView(ViewComp View, string ViewName)
         {
-            GameObject UIRoot = null;
             List<ViewComp> views = null;
             switch (View.GetLevel())
             {
                 case UILevel.LowUI:
-                    UIRoot = LowUIRoot;
                     views = mLowViewComps;
                     break;
                 case UILevel.NormalUI:
-                    UIRoot = NormalUIRoot;
                     views = mNormalViewComps;
                     break;
                 case UILevel.HightUI:
-                    UIRoot = HightUIRoot;
                     views = mHightViewComps;
                     break;
             }
@@ -130,20 +142,16 @@ namespace LG
         }
         public GameObject FindView(ViewComp View, string ViewName)
         {
-            GameObject UIRoot = null;
             List<ViewComp> views = null;
             switch (View.GetLevel())
             {
                 case UILevel.LowUI:
-                    UIRoot = LowUIRoot;
                     views = mLowViewComps;
                     break;
                 case UILevel.NormalUI:
-                    UIRoot = NormalUIRoot;
                     views = mNormalViewComps;
                     break;
                 case UILevel.HightUI:
-                    UIRoot = HightUIRoot;
                     views = mHightViewComps;
                     break;
             }
@@ -210,21 +218,25 @@ namespace LG
         public void UpdataViews(UILevel Level)
         {
             List<ViewComp> views = null;
+            int offset = 0;
             switch (Level)
             {
                 case UILevel.LowUI:
                     views = mLowViewComps;
+                    offset = 0;
                     break;
                 case UILevel.NormalUI:
                     views = mNormalViewComps;
+                    offset = 1000;
                     break;
                 case UILevel.HightUI:
                     views = mHightViewComps;
+                    offset = 2000;
                     break;
             }
             for (int i = 0; i < views.Count; i++)
             {
-                views[i].SetIndex(i);
+                views[i].SetIndex(i+ offset);
             }
 
         }

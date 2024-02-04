@@ -16,7 +16,7 @@ namespace LG
 
         public static void Debug(string msg)
         {
-            UnityEngine.Debug.LogError(msg);
+            UnityEngine.Debug.Log(msg);
         }
 
     }

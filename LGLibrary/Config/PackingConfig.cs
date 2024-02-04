@@ -1,3 +1,6 @@
+using Sirenix.OdinInspector;
+using Sirenix.Utilities;
+using Sirenix.Utilities.Editor;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
@@ -348,24 +351,63 @@ namespace LG
         }
 
     }
-
-    public class PackingConfig : ScriptableObject
+    [InitializeOnLoad]
+    [SirenixEditorConfig]
+    public class PackingConfig : GlobalConfig<PackingConfig>
     {
+        [HideInInspector]
         public AppPlatform BuildPlatform;
+        [HideInInspector]
         public BuildSwitchType BuildTarget;
+        [HideInInspector]
         public float ProVersion;
-        // public float ResVersion;
+        [HideInInspector]
+        public float ResVersion;
+        [HideInInspector]
         public bool IsCompress;
+        [HideInInspector]
         public string ResourceOutPath;
+        [HideInInspector]
         public List<ResourceCatalog> ResourceCatalog;
+        [HideInInspector]
         public List<ResourceModelConfig> ModelBuildConfig;
 
-        public PackingConfig()
+        [OnInspectorGUI]
+        private void CustomInspectorGUI()
         {
-            BuildPlatform = AppPlatform.Windows;
-            ResourceOutPath = Application.streamingAssetsPath;
-            ResourceCatalog = new List<ResourceCatalog>();
-            ModelBuildConfig = new List<ResourceModelConfig>();
+            SirenixEditorGUI.BeginHorizontalToolbar();
+            if (GUILayout.Toggle(false, "全选"))
+            {
+               
+            }
+            if (GUILayout.Toggle(false, "反选"))
+            {
+            }
+            SirenixEditorGUI.EndHorizontalToolbar();
+
+
+            SirenixEditorGUI.BeginHorizontalToolbar();
+            // Left panel with 30% width
+            GUILayout.BeginArea(new Rect(0, 50, Screen.width * 0.2f, Screen.height-50));
+            SirenixEditorGUI.BeginBox("目录");
+
+            SirenixEditorGUI.EndBox();
+            GUILayout.FlexibleSpace();
+            if (GUILayout.Button("Button 1"))
+            {
+                // Handle button click
+            }
+            GUILayout.EndArea();
+
+            // Right panel with 70% width
+            GUILayout.BeginArea(new Rect(Screen.width * 0.2f, 50, Screen.width * 0.8f, Screen.height-50));
+            SirenixEditorGUI.BeginBox("资源列表");
+            SirenixEditorGUI.EndBox();
+            GUILayout.EndArea();
+            SirenixEditorGUI.EndHorizontalToolbar();
         }
+
+
+
     }
 }

@@ -7,12 +7,13 @@ namespace LG
     {
         [SerializeField, LabelText("App资源加载方式")]
         protected AppResModel AppResModel;
-        [SerializeField, LabelText("资源服务器地址")]
+        [SerializeField, LabelText("资源服务器地址"), ShowIf("AppResModel", AppResModel.release)]
         protected string ResServiceAddr = string.Empty;
 
-        protected virtual void Awake()
+        private void Awake()
         {
-
+            SetConfig();
+            StartApp();
         }
 
         protected virtual void SetConfig()

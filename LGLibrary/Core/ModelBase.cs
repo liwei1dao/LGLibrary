@@ -1,6 +1,8 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 namespace LG
@@ -53,19 +55,23 @@ namespace LG
         /// <summary>
         /// 模块名称
         /// </summary>
+        [LabelText("模块名称"), ReadOnly]
         public string ModuleName;
         /// <summary>
         /// 模块标签
         /// </summary>
+        [LabelText("模块标签")]
         public string ModuleTag = string.Empty;
         /// <summary>
         /// 模块状态
         /// </summary>
+        [LabelText("模块状态"),ReadOnly]
         public ModelState State = ModelState.Close;
         /// <summary>
         /// 组件列表
         /// </summary>
-        protected List<ModelCompBase> Comps = new();
+        [ShowInInspector, LabelText("组件列表")]
+        protected List<ModelCompBase> Comps = new List<ModelCompBase>();
         protected Module_CoroutineComp CoroutineComp;                               //协程组件（需要则初始化）
         protected Module_ResourceComp ResourceComp;                                 //资源管理组件（需要则初始化）
 
@@ -76,6 +82,7 @@ namespace LG
 
         public virtual void LGLoad(params object[] agrs)
         {
+            State = ModelState.Loading;
             for (int i = 0; i < Comps.Count; i++)
             {
                 Comps[i].LGLoad(this, agrs);
@@ -107,7 +114,11 @@ namespace LG
 
         public virtual void LGStart()
         {
-
+            for (int i = 0; i < Comps.Count; i++)
+            {
+                Comps[i].LGStart();
+            }
+            State = ModelState.Start;
         }
 
         public virtual void LGActivation()
@@ -123,6 +134,9 @@ namespace LG
         protected virtual C AddComp<C>(params object[] agrs) where C : ModelCompBase, new()
         {
             C Comp = new C();
+            Type compType = Comp.GetType();
+            ModelCompBaseAttribute compAttribute = (ModelCompBaseAttribute)Attribute.GetCustomAttribute(compType, typeof(ModelCompBaseAttribute));
+            Comp.Name = compAttribute.Name;
             Comps.Add(Comp);
             if (State > ModelState.Close)
                 Comp.LGLoad(this, agrs);
@@ -190,6 +204,7 @@ namespace LG
             return CoroutineComp.StartCoroutine(coroutine);
         }
         #endregion
+
     }
 
     public abstract class ModuleBase<T> : ModuleBase where T : ModuleBase<T>, new()
@@ -229,13 +244,16 @@ namespace LG
 
         public override bool LoadEnd()
         {
+            Log.Debug("LoadEnd Check!");
             if (base.LoadEnd())
             {
+                Log.Debug("LoadEnd Finsh!");
                 LoadBackCall?.Invoke(instance);
                 return true;
             }
             else
             {
+                Log.Debug("LoadEnd Check False!");
                 return false;
             }
         }

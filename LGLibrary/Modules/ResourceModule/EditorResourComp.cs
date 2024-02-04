@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
@@ -9,13 +10,11 @@ namespace LG
   public class EditorResourComp : ModelCompBase<ResourceModule>
   {
     private Dictionary<string, Dictionary<string, UnityEngine.Object>> Assets;
-    public PackingConfig Config;
+    public PackingConfig Config = PackingConfig.Instance;
     public override void LGLoad(ModuleBase module, params object[] agrs)
     {
       base.LGLoad(module, agrs);
       Assets = new Dictionary<string, Dictionary<string, Object>>();
-      string ConfigPath = Path.Combine(ToolsConfig.RelativeEditorResources, "PackingToolsSetting.asset");
-      Config = AssetDatabase.LoadAssetAtPath<PackingConfig>(ConfigPath);
       if (Config == null)
       {
         Debug.LogError("资源编译配置文件没有生成 PackingConfig = null");

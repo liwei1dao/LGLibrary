@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
@@ -8,8 +9,9 @@ namespace LG
 
     public class ModuleManager : MonoBehaviour
     {
-        [SerializeField, LabelText("模块列表")]
-        protected Dictionary<string, ModuleBase> Modules = new();
+        [ShowInInspector, LabelText("模块列表")]
+        [DictionaryDrawerSettings(KeyLabel = "模块名称", ValueLabel = "模块对象", DisplayMode= DictionaryDisplayOptions.OneLine, IsReadOnly = true)]
+        protected Dictionary<string, ModuleBase> Modules = new Dictionary<string, ModuleBase>();
 
         #region 单例接口
         private static ModuleManager instance = null;
@@ -23,8 +25,8 @@ namespace LG
                     if (instance == null)
                     {
                         GameObject obj = new GameObject(typeof(ModuleManager).Name, typeof(ModuleManager));
+                        DontDestroyOnLoad(obj);
                         instance = obj.GetComponent<ModuleManager>();
-
                     }
                 }
                 return instance;
@@ -57,6 +59,7 @@ namespace LG
                 {
                     StartCoroutine(ModuleStart<T>(model, backCall));
                 }, agrs);
+                Modules[ModelName] = module;
             }
             else
             {
@@ -79,6 +82,7 @@ namespace LG
                 {
                     StartCoroutine(ModuleStart<T>(model, backCall));
                 }, agrs);
+                Modules[ModelName] = module;
             }
             else
             {
@@ -95,6 +99,7 @@ namespace LG
                 {
                     StartCoroutine(ModuleStart<T>(model, backCall));
                 }, agrs);
+                Modules[module.ModuleName] = module;
             }
             else
             {
