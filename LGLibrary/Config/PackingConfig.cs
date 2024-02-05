@@ -1,6 +1,6 @@
+using Newtonsoft.Json;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
-using Sirenix.Utilities.Editor;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
@@ -25,13 +25,17 @@ namespace LG
     [System.Serializable]
     public class ResourceCatalog
     {
+        [HideInInspector]
         public string Name;
+        [HideInInspector]
         public string Path;
     }
     [System.Serializable]
     public class ResourceModelConfig : ResourceItemConfig
     {
+        [HideInInspector]
         public bool IsSelection = true;
+        [HideInInspector]
         public bool IsUpdataModule = false;
         public ResourceModelConfig(string _RootName, string _Path)
             : base(_RootName, null, _Path)
@@ -99,16 +103,27 @@ namespace LG
     [System.Serializable]
     public class ResourceItemConfig
     {
+        [HideInInspector]
         public string Name;
+        [HideInInspector]
         public string Path;
+        [HideInInspector]
         public string RootName;
+        [HideInInspector]
         public string ModelName;
+        [HideInInspector]
         public string AssetBundleName;
+        [HideInInspector]
         public int Layer;
+        [HideInInspector]
         public ResourceBuildNodelType NodelType;
+        [HideInInspector]
         public bool Foldout = false;
+        [HideInInspector]
         public bool IsMergeBuild = true;
+        [HideInInspector]
         public bool IsShowBuildToogle = true;
+        [HideInInspector]
         public List<ResourceItemConfig> ChildBuildItem;
 
         public ResourceItemConfig(string _RootName, ResourceItemConfig _Parent, string _Path)
@@ -249,7 +264,7 @@ namespace LG
         {
 #if UNITY_EDITOR
             EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
-            EditorGUI.indentLevel = Layer;
+            EditorGUI.indentLevel = Layer+1;
             if (NodelType == ResourceBuildNodelType.FolderNodel)
             {
                 Foldout = EditorGUILayout.Foldout(Foldout, Name);
@@ -355,59 +370,25 @@ namespace LG
     [SirenixEditorConfig]
     public class PackingConfig : GlobalConfig<PackingConfig>
     {
-        [HideInInspector]
+        [EnumToggleButtons, LabelText("目标平台"), BoxGroup("Build Settings")]
         public AppPlatform BuildPlatform;
-        [HideInInspector]
+        [EnumToggleButtons, LabelText("编译策略"), BoxGroup("Build Settings")]
         public BuildSwitchType BuildTarget;
-        [HideInInspector]
+        [BoxGroup("Build Settings"),LabelText("大版本")]
         public float ProVersion;
-        [HideInInspector]
+        [BoxGroup("Build Settings"), LabelText("小版本")]
         public float ResVersion;
-        [HideInInspector]
+        [BoxGroup("Build Settings"), LabelText("是否压缩")]
         public bool IsCompress;
-        [HideInInspector]
-        public string ResourceOutPath;
-        [HideInInspector]
+        [BoxGroup("Build Settings"), LabelText("输出路径"),ReadOnly]
+        public string ResourceOutPath = Application.streamingAssetsPath;
+        [HorizontalGroup(0.2f)]
+        [LabelText("目录"),ListDrawerSettings(CustomAddFunction = "CatalogAddFunction", OnBeginListElementGUI = "OnBeginCatalogGUI")]
         public List<ResourceCatalog> ResourceCatalog;
-        [HideInInspector]
+        [LabelText("模块"), ListDrawerSettings(OnBeginListElementGUI = "OnBeginModelGUI")]
+        [HorizontalGroup(0.8f)]
         public List<ResourceModelConfig> ModelBuildConfig;
-
-        [OnInspectorGUI]
-        private void CustomInspectorGUI()
-        {
-            SirenixEditorGUI.BeginHorizontalToolbar();
-            if (GUILayout.Toggle(false, "全选"))
-            {
-               
-            }
-            if (GUILayout.Toggle(false, "反选"))
-            {
-            }
-            SirenixEditorGUI.EndHorizontalToolbar();
-
-
-            SirenixEditorGUI.BeginHorizontalToolbar();
-            // Left panel with 30% width
-            GUILayout.BeginArea(new Rect(0, 50, Screen.width * 0.2f, Screen.height-50));
-            SirenixEditorGUI.BeginBox("目录");
-
-            SirenixEditorGUI.EndBox();
-            GUILayout.FlexibleSpace();
-            if (GUILayout.Button("Button 1"))
-            {
-                // Handle button click
-            }
-            GUILayout.EndArea();
-
-            // Right panel with 70% width
-            GUILayout.BeginArea(new Rect(Screen.width * 0.2f, 50, Screen.width * 0.8f, Screen.height-50));
-            SirenixEditorGUI.BeginBox("资源列表");
-            SirenixEditorGUI.EndBox();
-            GUILayout.EndArea();
-            SirenixEditorGUI.EndHorizontalToolbar();
-        }
-
-
-
     }
+
+   
 }
