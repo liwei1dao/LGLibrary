@@ -388,6 +388,81 @@ namespace LG
         [LabelText("模块"), ListDrawerSettings(OnBeginListElementGUI = "OnBeginModelGUI")]
         [HorizontalGroup(0.8f)]
         public List<ResourceModelConfig> ModelBuildConfig;
+
+        private void OnBeginCatalogGUI(int index)
+        {
+            GUILayout.TextField(ResourceCatalog[index].Name);
+        }
+
+        private void OnBeginModelGUI(int index)
+        {
+            ModelBuildConfig[index].OnGUI();
+        }
+        private ResourceCatalog CatalogAddFunction()
+        {
+            string NewPath = EditorUtility.OpenFolderPanel("选择资源目录", Application.dataPath, "");
+            ResourceCatalog Catalog = AddNewResourceCatalog(NewPath);
+            return Catalog;
+        }
+
+        public ResourceCatalog AddNewResourceCatalog(string _Path)
+        {
+            _Path = _Path.Substring(Application.dataPath.Length, _Path.Length - Application.dataPath.Length);
+            ResourceCatalog mCatalog = new ResourceCatalog
+            {
+                Name = StringExtend.GetPathFolderName(_Path),
+                Path = _Path
+            };
+
+            RetrievalModelResourceDirectory(mCatalog, mCatalog.Path);
+            return mCatalog;
+        }
+
+        /// <summary>
+        /// 检索模块资源目录
+        /// </summary>
+        /// <param name="_Path"></param>
+        private void RetrievalModelResourceDirectory(ResourceCatalog _Catalog, string _Path)
+        {
+            string[] fileList = Directory.GetFileSystemEntries(Application.dataPath + _Path);
+            foreach (string file in fileList)
+            {
+                if (Directory.Exists(file))
+                {
+                    if (file.EndsWith("Module"))
+                    {
+                        string _file = file.Substring(Application.dataPath.Length, file.Length - Application.dataPath.Length);
+                        ResourceModelConfig ModelConfig = new ResourceModelConfig(_Catalog.Path, _file);
+                        if (ModelConfig.NodelType != ResourceBuildNodelType.UselessNodel)
+                        {
+                            AddResourceModelBuildConfig(ModelConfig);
+                        }
+                    }
+                    else
+                    {
+                        string _file = file.Substring(Application.dataPath.Length, file.Length - Application.dataPath.Length);
+                        RetrievalModelResourceDirectory(_Catalog, _file);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 添加模块资源编译配置
+        /// </summary>
+        /// <param name="_Config"></param>
+        private void AddResourceModelBuildConfig(ResourceModelConfig _Config)
+        {
+            for (int i = 0; i < ModelBuildConfig.Count; i++)
+            {
+                if (ModelBuildConfig[i].Name == _Config.Name)
+                {
+                    ModelBuildConfig[i].MergeConfig(_Config);
+                    return;
+                }
+            }
+            ModelBuildConfig.Add(_Config);
+        }
     }
 
    
