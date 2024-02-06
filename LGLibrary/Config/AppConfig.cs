@@ -7,7 +7,7 @@ namespace LG
     public static class AppConfig
     {
         public static bool IsOpenVersionCheck;                                  //是否开启版本检测
-        public static string ResServiceAddr = string.Empty;                                       //服务器地址
+        public static string ResServiceAddr = string.Empty;                     //服务器地址
         public static AppResModel AppResModel = AppResModel.debug;              //资源加载模式
         public static AppPlatform TargetPlatform = AppPlatform.Windows;         //当前平台
         public static string ResZipPassword = "liwei1dao";                      //内部资源压缩密码
