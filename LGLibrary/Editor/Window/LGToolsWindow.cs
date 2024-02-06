@@ -2,10 +2,8 @@ using Sirenix.OdinInspector.Editor;
 using System.Linq;
 using UnityEngine;
 using Sirenix.Utilities.Editor;
-using Sirenix.Serialization;
 using UnityEditor;
 using Sirenix.Utilities;
-using Sirenix.OdinInspector.Demos;
 
 namespace LG
 {

@@ -1,15 +1,13 @@
 using Newtonsoft.Json;
-
 using Sirenix.OdinInspector.Editor;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using NUnit.Framework;
 using Sirenix.OdinInspector;
-
 namespace LG {
 
+    [InitializeOnLoad]
     public class BuildInfo
     {
         public AppModuleAssetInfo AppBuildInfo;
@@ -53,64 +51,11 @@ namespace LG {
             return Builds.ToArray();
         }
     }
-    public class LGToolsWindow_Build : OdinEditorWindow
+    public class LGToolsWindow_Build
     {
-        [HideInInspector]
-        PackingConfig Config = PackingConfig.Instance;
-
-        [ShowInInspector]
-        [EnumToggleButtons, LabelText("目标平台"), BoxGroup("Build Settings")]
-        public AppPlatform BuildPlatform {
-            get { return Config.BuildPlatform; }
-        }
-        [ShowInInspector]
-        [EnumToggleButtons, LabelText("编译策略"), BoxGroup("Build Settings")]
-        public BuildSwitchType BuildTarget
-        {
-            get { return Config.BuildTarget; }
-        }
-        [ShowInInspector]
-        [BoxGroup("Build Settings"), LabelText("大版本")]
-        public float ProVersion
-        {
-            get { return Config.ProVersion; }
-        }
-        [ShowInInspector]
-        [BoxGroup("Build Settings"), LabelText("小版本")]
-        public float ResVersion
-        {
-            get { return Config.ResVersion; }
-        }
-        [ShowInInspector]
-        [BoxGroup("Build Settings"), LabelText("是否压缩")]
-        public bool IsCompress
-        {
-            get { return Config.IsCompress; }
-        }
-        [ShowInInspector]
-        [BoxGroup("Build Settings"), LabelText("输出路径"), ReadOnly]
-        public string ResourceOutPath
-        {
-            get { return Config.ResourceOutPath; }
-        }
-
-        [ShowInInspector]
-        [HorizontalGroup(0.2f)]
-        [LabelText("目录"), ListDrawerSettings(CustomAddFunction = "CatalogAddFunction", OnBeginListElementGUI = "OnBeginCatalogGUI")]
-        public List<ResourceCatalog> ResourceCatalog
-        {
-            get { return Config.ResourceCatalog; }
-            set { Config.ResourceCatalog = value; }
-        }
-        [ShowInInspector]
-        [HorizontalGroup(0.8f)]
-        [LabelText("模块"), ListDrawerSettings(OnBeginListElementGUI = "OnBeginModelGUI")]
-        public List<ResourceModelConfig> ModelBuildConfig
-        {
-            get { return Config.ModelBuildConfig; }
-            set { Config.ModelBuildConfig = value; }
-        }
-
+        [SerializeField]
+        [InlineEditor(Expanded = true)]
+        private PackingConfig Config = PackingConfig.Instance;
 
         [Button("刷新", ButtonSizes.Large)]
         private void RefreshButton()
@@ -404,7 +349,7 @@ namespace LG {
             {
                 Files[i] = fileinfo[i].FullName;
             }
-            ZipTools.Zip(Files, Config.ResourceOutPath + "/Res.zip", AppConfig.ResZipPassword, new string[] { ".meta" }, UpdataZipProgress);
+            EditorCoroutineRunner.StartEditorCoroutine(ZipTools.Zip(Files, Config.ResourceOutPath + "/Res.zip", AppConfig.ResZipPassword, new string[] { ".meta" }, UpdataZipProgress));
         }
 
         public void UpdataZipProgress(string _Describe, float _Progress)

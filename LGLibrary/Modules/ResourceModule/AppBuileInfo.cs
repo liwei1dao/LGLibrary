@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace LG
 {
-
     public enum AssetCheckMode               //资源校验方式
     {
         AppStartCheck,                       //APP启动校验

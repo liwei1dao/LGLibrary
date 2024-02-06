@@ -1,9 +1,8 @@
-using System;
+﻿using UnityEngine;
 using System.Collections;
-using System.IO;
-using System.Threading.Tasks;
 using ICSharpCode.SharpZipLib.Zip;
-using UnityEngine;
+using System.IO;
+using System;
 
 namespace LG
 {
@@ -14,13 +13,11 @@ namespace LG
     {
         public delegate void ZipOpeProgress(string Describe, float Progress);
 
-        static ZipTools()
-        {
+        static ZipTools() {
             ZipConstants.DefaultCodePage = 0;
         }
 
         #region 压缩
-
         /// <summary>
         /// 压缩文件和文件夹
         /// </summary>
@@ -29,7 +26,7 @@ namespace LG
         /// <param name="_password">压缩密码</param>
         /// <param name="_zipCallback">ZipCallback对象，负责回调</param>
         /// <returns></returns>
-        public static async Task Zip(string[] _fileOrDirectoryArray, string _outputPathName, string _password = null, string[] filter = null, ZipOpeProgress zipback = null)
+        public static IEnumerator Zip(string[] _fileOrDirectoryArray, string _outputPathName, string _password = null,string[] filter = null, ZipOpeProgress zipback = null)
         {
             float Progress = 0;
             string Describe = string.Empty;
@@ -42,9 +39,9 @@ namespace LG
             {
                 string fileOrDirectory = _fileOrDirectoryArray[index];
                 if (Directory.Exists(fileOrDirectory))
-                    await ZipDirectory(fileOrDirectory, string.Empty, zipOutputStream, filter);
+                    yield return ZipDirectory(fileOrDirectory, string.Empty, zipOutputStream, filter);
                 else if (File.Exists(fileOrDirectory))
-                    await ZipFile(fileOrDirectory, string.Empty, zipOutputStream, filter);
+                    yield return ZipFile(fileOrDirectory, string.Empty, zipOutputStream, filter);
                 if (zipback != null)
                 {
                     Describe = "正在压缩 " + fileOrDirectory;
@@ -67,7 +64,7 @@ namespace LG
         /// <param name="_zipOutputStream">压缩输出流</param>
         /// <param name="_zipCallback">ZipCallback对象，负责回调</param>
         /// <returns></returns>
-        private static async Task ZipFile(string _filePathName, string _parentRelPath, ZipOutputStream _zipOutputStream, string[] filter = null)
+        private static IEnumerator ZipFile(string _filePathName, string _parentRelPath, ZipOutputStream _zipOutputStream, string[] filter = null)
         {
             bool Isfilter = false;
             if (filter != null)
@@ -103,9 +100,9 @@ namespace LG
                     fileStream.Dispose();
                 }
             }
-            await Task.Delay(10);
+            yield return new WaitForEndOfFrame();
         }
-   
+
         /// <summary>
         /// 压缩文件夹
         /// </summary>
@@ -114,7 +111,7 @@ namespace LG
         /// <param name="_zipOutputStream">压缩输出流</param>
         /// <param name="_zipCallback">ZipCallback对象，负责回调</param>
         /// <returns></returns>
-        private static async Task ZipDirectory(string _path, string _parentRelPath, ZipOutputStream _zipOutputStream, string[] filter = null)
+        private static IEnumerator ZipDirectory(string _path, string _parentRelPath, ZipOutputStream _zipOutputStream, string[] filter = null)
         {
             ZipEntry entry = null;
 
@@ -127,13 +124,13 @@ namespace LG
             string[] files = Directory.GetFiles(_path);
             for (int index = 0; index < files.Length; ++index)
             {
-                await ZipFile(files[index], Path.Combine(_parentRelPath, Path.GetFileName(_path)), _zipOutputStream, filter);
+                yield return ZipFile(files[index], Path.Combine(_parentRelPath, Path.GetFileName(_path)), _zipOutputStream, filter);
             }
 
             string[] directories = Directory.GetDirectories(_path);
             for (int index = 0; index < directories.Length; ++index)
             {
-                await ZipDirectory(directories[index], Path.Combine(_parentRelPath, Path.GetFileName(_path)), _zipOutputStream, filter);
+                yield return ZipDirectory(directories[index], Path.Combine(_parentRelPath, Path.GetFileName(_path)), _zipOutputStream, filter);
             }
 
         }
@@ -147,9 +144,9 @@ namespace LG
         /// <param name="_password">解压密码</param>
         /// <param name="_unzipCallback">UnzipCallback对象，负责回调</param>
         /// <returns></returns>
-        public static IEnumerator UnzipFile(string _filePathName, string _outputPath, string _password = null, ZipOpeProgress zipback = null)
+        public static IEnumerator UnzipFile(string _filePathName, string _outputPath, string _password = null,ZipOpeProgress zipback = null)
         {
-            yield return UnzipFile(File.OpenRead(_filePathName), _outputPath, _password, zipback);
+              yield return UnzipFile(File.OpenRead(_filePathName), _outputPath, _password, zipback);
         }
 
         /// <summary>
@@ -162,7 +159,9 @@ namespace LG
         /// <returns></returns>
         public static IEnumerator UnzipFile(byte[] _fileBytes, string _outputPath, string _password = null, ZipOpeProgress zipback = null)
         {
-            yield return UnzipFile(new MemoryStream(_fileBytes), _outputPath, _password, zipback);
+
+           yield return UnzipFile(new MemoryStream(_fileBytes), _outputPath, _password, zipback);
+
         }
 
 
@@ -224,7 +223,7 @@ namespace LG
                         if (zipback != null)
                         {
                             Progress = Progress + fileStream.Length / (float)_inputStream.Length;
-                            zipback("正在解压文件:" + entry.Name, Progress);
+                            zipback("正在解压文件:"+ entry.Name, Progress);
                         }
                         yield return new WaitForEndOfFrame();
                     }
@@ -235,3 +234,4 @@ namespace LG
         #endregion
     }
 }
+

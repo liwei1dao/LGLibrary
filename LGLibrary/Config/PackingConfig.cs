@@ -366,7 +366,7 @@ namespace LG
         }
 
     }
-    [InitializeOnLoad]
+    [System.Serializable]
     [SirenixEditorConfig]
     public class PackingConfig : GlobalConfig<PackingConfig>
     {
@@ -380,12 +380,15 @@ namespace LG
         public float ResVersion;
         [BoxGroup("Build Settings"), LabelText("是否压缩")]
         public bool IsCompress;
+        [BoxGroup("Build Settings"),ShowInInspector, LabelText("压缩密码"),ShowIf("IsCompress")]
+        public string CompressPassword => AppConfig.ResZipPassword;
         [BoxGroup("Build Settings"), LabelText("输出路径"),ReadOnly]
         public string ResourceOutPath = Application.streamingAssetsPath;
         [HorizontalGroup(0.2f)]
-        [LabelText("目录"),ListDrawerSettings(CustomAddFunction = "CatalogAddFunction", OnBeginListElementGUI = "OnBeginCatalogGUI")]
+        [OnValueChanged("OnListCatalogChanged")]
+        [LabelText("目录"),ListDrawerSettings(CustomAddFunction = "CatalogAddFunction",  OnBeginListElementGUI = "OnBeginCatalogGUI")]
         public List<ResourceCatalog> ResourceCatalog;
-        [LabelText("模块"), ListDrawerSettings(OnBeginListElementGUI = "OnBeginModelGUI")]
+        [LabelText("模块"), ListDrawerSettings(HideAddButton = true, HideRemoveButton = true, OnBeginListElementGUI = "OnBeginModelGUI")]
         [HorizontalGroup(0.8f)]
         public List<ResourceModelConfig> ModelBuildConfig;
 
@@ -398,13 +401,22 @@ namespace LG
         {
             ModelBuildConfig[index].OnGUI();
         }
+#if UNITY_EDITOR
         private ResourceCatalog CatalogAddFunction()
         {
             string NewPath = EditorUtility.OpenFolderPanel("选择资源目录", Application.dataPath, "");
             ResourceCatalog Catalog = AddNewResourceCatalog(NewPath);
             return Catalog;
         }
-
+#endif
+        private void OnListCatalogChanged()
+        {
+            ModelBuildConfig.Clear();
+            foreach (var Item in ResourceCatalog)
+            {
+                RetrievalModelResourceDirectory(Item, Item.Path);
+            }
+        }
         public ResourceCatalog AddNewResourceCatalog(string _Path)
         {
             _Path = _Path.Substring(Application.dataPath.Length, _Path.Length - Application.dataPath.Length);
@@ -413,8 +425,7 @@ namespace LG
                 Name = StringExtend.GetPathFolderName(_Path),
                 Path = _Path
             };
-
-            RetrievalModelResourceDirectory(mCatalog, mCatalog.Path);
+            //RetrievalModelResourceDirectory(mCatalog, mCatalog.Path);
             return mCatalog;
         }
 
