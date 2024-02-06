@@ -1,17 +1,14 @@
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 
-namespace LG
+namespace LG.Editor
 {
     [InitializeOnLoad]
     [SirenixEditorConfig]
     public class LGToolsWindow_Hose : GlobalConfig<LGToolsWindow_Hose>
     {
-        [LabelText("ÏîÄ¿Ãû³Æ")]
+        [LabelText("é¡¹ç›®åç§°")]
         public string ProjectName;
     }
 }

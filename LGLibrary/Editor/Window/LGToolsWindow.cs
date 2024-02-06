@@ -5,7 +5,7 @@ using Sirenix.Utilities.Editor;
 using UnityEditor;
 using Sirenix.Utilities;
 
-namespace LG
+namespace LG.Editor
 {
     public class LGToolsWindow : OdinMenuEditorWindow
     {
@@ -15,7 +15,8 @@ namespace LG
             var window = GetWindow<LGToolsWindow>();
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(800, 600);
         }
-        protected override OdinMenuTree BuildMenuTree() {
+        protected override OdinMenuTree BuildMenuTree()
+        {
             OdinMenuTree tree = new OdinMenuTree(supportsMultiSelect: true)
             {
                 { "Project",LGToolsWindow_Hose.Instance},

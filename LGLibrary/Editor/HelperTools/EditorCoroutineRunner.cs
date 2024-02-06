@@ -3,7 +3,8 @@ using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace LG {
+namespace LG.Editor
+{
     public static class EditorCoroutineRunner
     {
         private class EditorCoroutine : IEnumerator

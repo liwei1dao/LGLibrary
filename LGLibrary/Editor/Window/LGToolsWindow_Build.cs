@@ -1,11 +1,10 @@
 using Newtonsoft.Json;
-using Sirenix.OdinInspector.Editor;
-using System.Collections.Generic;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
 using Sirenix.OdinInspector;
-namespace LG {
+
+namespace LG.Editor
+{
 
     [InitializeOnLoad]
     public class BuildInfo
@@ -55,9 +54,9 @@ namespace LG {
     {
         [SerializeField]
         [InlineEditor(Expanded = true)]
-        private PackingConfig Config = PackingConfig.Instance;
+        public PackingConfig Config = PackingConfig.Instance;
 
-        [Button("Ë¢ÐÂ", ButtonSizes.Large)]
+        [Button("Ë¢ï¿½ï¿½", ButtonSizes.Large)]
         private void RefreshButton()
         {
             Config.ModelBuildConfig.Clear();
@@ -67,7 +66,7 @@ namespace LG {
             }
         }
 
-        [Button("±àÒë", ButtonSizes.Large)]
+        [Button("ï¿½ï¿½ï¿½ï¿½", ButtonSizes.Large)]
         private void BuildButton()
         {
             EditorApplication.delayCall += BuildResourceModel;
@@ -75,7 +74,7 @@ namespace LG {
 
         private ResourceCatalog CatalogAddFunction()
         {
-            string NewPath = EditorUtility.OpenFolderPanel("Ñ¡Ôñ×ÊÔ´Ä¿Â¼", Application.dataPath, "");
+            string NewPath = EditorUtility.OpenFolderPanel("Ñ¡ï¿½ï¿½ï¿½ï¿½Ô´Ä¿Â¼", Application.dataPath, "");
             ResourceCatalog Catalog = AddNewResourceCatalog(NewPath);
             return Catalog;
         }
@@ -103,7 +102,7 @@ namespace LG {
             Config.ModelBuildConfig[index].OnGUI();
         }
         /// <summary>
-        /// ¼ìË÷Ä£¿é×ÊÔ´Ä¿Â¼
+        /// ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Ô´Ä¿Â¼
         /// </summary>
         /// <param name="_Path"></param>
         private void RetrievalModelResourceDirectory(ResourceCatalog _Catalog, string _Path)
@@ -131,7 +130,7 @@ namespace LG {
             }
         }
         /// <summary>
-        /// Ìí¼ÓÄ£¿é×ÊÔ´±àÒëÅäÖÃ
+        /// ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="_Config"></param>
         private void AddResourceModelBuildConfig(ResourceModelConfig _Config)
@@ -146,9 +145,9 @@ namespace LG {
             }
             Config.ModelBuildConfig.Add(_Config);
         }
-        #region ±àÒë
+        #region ï¿½ï¿½ï¿½ï¿½
         /// <summary>
-        /// ±àÒë×ÊÔ´Ä£¿é
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ä£ï¿½ï¿½
         /// </summary>
         public void BuildResourceModel()
         {
@@ -236,7 +235,7 @@ namespace LG {
             }
             else
             {
-                Debug.LogError("ÎÔ²ÛÅ¶£¬É¶±ÆÇé¿ö°¡");
+                Debug.LogError("ï¿½Ô²ï¿½Å¶ï¿½ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
             }
         }
         private void CleraBuildResourceFile(ResourceItemConfig _Item)
@@ -338,7 +337,7 @@ namespace LG {
         }
 
         /// <summary>
-        /// Ñ¹Ëõ×ÊÔ´ÎÄ¼þ
+        /// Ñ¹ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ä¼ï¿½
         /// </summary>
         public void CreateZip()
         {
@@ -354,7 +353,7 @@ namespace LG {
 
         public void UpdataZipProgress(string _Describe, float _Progress)
         {
-            EditorUtility.DisplayProgressBar("Ñ¹ËõÎÄ¼þ", _Describe, _Progress);
+            EditorUtility.DisplayProgressBar("Ñ¹ï¿½ï¿½ï¿½Ä¼ï¿½", _Describe, _Progress);
             if (_Progress >= 1)
             {
                 EditorUtility.ClearProgressBar();
