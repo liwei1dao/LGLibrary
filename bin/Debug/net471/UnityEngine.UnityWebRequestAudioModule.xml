@@ -16,9 +16,7 @@
     </member>
     <member name="P:UnityEngine.Networking.DownloadHandlerAudioClip.compressed">
       <summary>
-        <para>Create AudioClip that is compressed in memory.
-
-Note: When streamAudio is true, it supersedes compression, and the download handler creates an AudioClip similar to an imported clip with the loadType AudioClipLoadType.Streaming.</para>
+        <para>Create AudioClip that is compressed in memory.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Networking.DownloadHandlerAudioClip.streamAudio">
@@ -40,6 +38,14 @@ Note: When streamAudio is true, it supersedes compression, and the download hand
       <param name="www">A finished UnityWebRequest object with DownloadHandlerAudioClip attached.</param>
       <returns>
         <para>The same as DownloadHandlerAudioClip.audioClip</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Networking.DownloadHandlerAudioClip.GetData">
+      <summary>
+        <para>Called by DownloadHandler.data. Returns a copy of the downloaded clip data as raw bytes.</para>
+      </summary>
+      <returns>
+        <para>A copy of the downloaded data.</para>
       </returns>
     </member>
     <member name="T:UnityEngine.Networking.DownloadHandlerMovieTexture">

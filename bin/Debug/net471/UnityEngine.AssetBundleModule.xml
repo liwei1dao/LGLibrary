@@ -6,7 +6,7 @@
     </assembly>
     <member name="T:UnityEngine.AssetBundle">
       <summary>
-        <para>AssetBundles let you stream additional assets via the UnityWebRequest class and instantiate them at runtime.</para>
+        <para>AssetBundles let you stream additional assets via the UnityWebRequest class and instantiate them at runtime. AssetBundles are created via BuildPipeline.BuildAssetBundle.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.AssetBundle.isStreamedSceneAssetBundle">
@@ -258,7 +258,7 @@ See Also: UnityWebRequestAssetBundle.GetAssetBundle, DownloadHandlerAssetBundle.
     </member>
     <member name="M:UnityEngine.AssetBundle.SetAssetBundleDecryptKey(System.String)">
       <summary>
-        <para>Set the 16-bytes key for AssetBundle Decryption. Set NULL will remove the key from memory.</para>
+        <para>SetAssetBundleDecryptKey.</para>
       </summary>
       <param name="password"></param>
     </member>
@@ -273,15 +273,6 @@ See Also: UnityWebRequestAssetBundle.GetAssetBundle, DownloadHandlerAssetBundle.
         <para>Unloads all currently loaded AssetBundles.</para>
       </summary>
       <param name="unloadAllObjects">Determines whether the current instances of objects loaded from AssetBundles will also be unloaded.</param>
-    </member>
-    <member name="M:UnityEngine.AssetBundle.UnloadAsync(System.Boolean)">
-      <summary>
-        <para>Unloads assets in the bundle.</para>
-      </summary>
-      <param name="unloadAllLoadedObjects"></param>
-      <returns>
-        <para>Asynchronous unload request for an AssetBundle.</para>
-      </returns>
     </member>
     <member name="T:UnityEngine.AssetBundleCreateRequest">
       <summary>
@@ -458,14 +449,74 @@ See Also: UnityWebRequestAssetBundle.GetAssetBundle, DownloadHandlerAssetBundle.
         <para>Asset object being loaded (Read Only).</para>
       </summary>
     </member>
-    <member name="T:UnityEngine.AssetBundleUnloadOperation">
+    <member name="T:UnityEngine.BuildCompression">
       <summary>
-        <para>Async unload operation for an AssetBundle.</para>
+        <para>Contains information about compression methods, compression levels and block sizes that are supported by Asset Bundle compression at build time and recompression at runtime.</para>
       </summary>
     </member>
-    <member name="M:UnityEngine.AssetBundleUnloadOperation.WaitForCompletion">
+    <member name="P:UnityEngine.BuildCompression.enableProtect">
       <summary>
-        <para>Synchronously waits for the operation to complete.</para>
+        <para>Enable asset bundle protection.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.BuildCompression.LZ4">
+      <summary>
+        <para>LZ4HC "Chunk Based" Compression.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.BuildCompression.LZ4Runtime">
+      <summary>
+        <para>LZ4 Compression for runtime recompression.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.BuildCompression.LZMA">
+      <summary>
+        <para>LZMA Compression.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.BuildCompression.Uncompressed">
+      <summary>
+        <para>Uncompressed Asset Bundle.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.BuildCompression.UncompressedRuntime">
+      <summary>
+        <para>Uncompressed Asset Bundle.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.CompressionLevel">
+      <summary>
+        <para>Compression Levels relate to how much time should be spent compressing Assets into an Asset Bundle.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.CompressionLevel.None">
+      <summary>
+        <para>No compression.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.CompressionType">
+      <summary>
+        <para>Compression Method for Asset Bundles.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.CompressionType.Lz4">
+      <summary>
+        <para>LZ4 compression results in larger compressed files than LZMA, but does not require the entire bundle to be decompressed before use.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.CompressionType.Lz4HC">
+      <summary>
+        <para>LZ4HC is a high compression variant of LZ4. LZ4HC compression results in larger compressed files than LZMA, but does not require the entire bundle to be decompressed before use.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.CompressionType.Lzma">
+      <summary>
+        <para>LZMA compression results in smaller compressed Asset Bundles but they must be entirely decompressed before use.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.CompressionType.None">
+      <summary>
+        <para>Uncompressed Asset Bundles are larger than compressed Asset Bundles, but they are the fastest to access once downloaded.</para>
       </summary>
     </member>
     <member name="A:UnityEngine.AssetBundleModule">

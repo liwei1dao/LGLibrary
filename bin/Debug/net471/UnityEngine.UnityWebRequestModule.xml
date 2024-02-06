@@ -43,11 +43,6 @@
         <para>Returns true if this DownloadHandler has been informed by its parent UnityWebRequest that all data has been received, and this DownloadHandler has completed any necessary post-download processing. (Read Only)</para>
       </summary>
     </member>
-    <member name="P:UnityEngine.Networking.DownloadHandler.nativeData">
-      <summary>
-        <para>Provides direct access to downloaded data.</para>
-      </summary>
-    </member>
     <member name="P:UnityEngine.Networking.DownloadHandler.text">
       <summary>
         <para>Convenience property. Returns the bytes from data interpreted as a UTF8 string. (Read Only)</para>
@@ -69,14 +64,6 @@
       </summary>
       <returns>
         <para>Byte array to return as the value of the data property.</para>
-      </returns>
-    </member>
-    <member name="M:UnityEngine.Networking.DownloadHandler.GetNativeData">
-      <summary>
-        <para>Provides allocation-free access to the downloaded data as a NativeArray.</para>
-      </summary>
-      <returns>
-        <para>NativeArray providing access to downloaded data.</para>
       </returns>
     </member>
     <member name="M:UnityEngine.Networking.DownloadHandler.GetProgress">
@@ -134,6 +121,14 @@
       <param name="www">A finished UnityWebRequest object with DownloadHandlerBuffer attached.</param>
       <returns>
         <para>The same as DownloadHandlerBuffer.text</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Networking.DownloadHandlerBuffer.GetData">
+      <summary>
+        <para>Returns a copy of the contents of the native-memory data buffer as a byte array.</para>
+      </summary>
+      <returns>
+        <para>A copy of the data which has been downloaded.</para>
       </returns>
     </member>
     <member name="T:UnityEngine.Networking.DownloadHandlerFile">
@@ -782,26 +777,14 @@
         <para>A UnityWebRequest configured to transmit a HTTP HEAD request.</para>
       </returns>
     </member>
-    <member name="M:UnityEngine.Networking.UnityWebRequest.Post(System.String,System.String,System.String)">
+    <member name="M:UnityEngine.Networking.UnityWebRequest.Post(System.String,System.String)">
       <summary>
         <para>Creates a UnityWebRequest configured to send form data to a server via HTTP POST.</para>
       </summary>
-      <param name="uri">The target URI to which the string will be transmitted.</param>
-      <param name="postData">Form body data. Will be converted to UTF-8 string.</param>
-      <param name="contentType">Value for the Content-Type header, for example application/json.</param>
+      <param name="uri">The target URI to which form data will be transmitted.</param>
+      <param name="postData">Form body data. Will be URLEncoded prior to transmission.</param>
       <returns>
-        <para>A UnityWebRequest configured to send string to uri via POST.</para>
-      </returns>
-    </member>
-    <member name="M:UnityEngine.Networking.UnityWebRequest.Post(System.Uri,System.String,System.String)">
-      <summary>
-        <para>Creates a UnityWebRequest configured to send form data to a server via HTTP POST.</para>
-      </summary>
-      <param name="uri">The target URI to which the string will be transmitted.</param>
-      <param name="postData">Form body data. Will be converted to UTF-8 string.</param>
-      <param name="contentType">Value for the Content-Type header, for example application/json.</param>
-      <returns>
-        <para>A UnityWebRequest configured to send string to uri via POST.</para>
+        <para>A UnityWebRequest configured to send form data to uri via POST.</para>
       </returns>
     </member>
     <member name="M:UnityEngine.Networking.UnityWebRequest.Post(System.String,UnityEngine.WWWForm)">
@@ -814,28 +797,7 @@
         <para>A UnityWebRequest configured to send form data to uri via POST.</para>
       </returns>
     </member>
-    <member name="M:UnityEngine.Networking.UnityWebRequest.Post(System.Uri,UnityEngine.WWWForm)">
-      <summary>
-        <para>Create a UnityWebRequest configured to send form data to a server via HTTP POST.</para>
-      </summary>
-      <param name="uri">The target URI to which form data will be transmitted.</param>
-      <param name="formData">Form fields or files encapsulated in a WWWForm object, for formatting and transmission to the remote server.</param>
-      <returns>
-        <para>A UnityWebRequest configured to send form data to uri via POST.</para>
-      </returns>
-    </member>
     <member name="M:UnityEngine.Networking.UnityWebRequest.Post(System.String,System.Collections.Generic.List`1&lt;UnityEngine.Networking.IMultipartFormSection&gt;)">
-      <summary>
-        <para>Create a UnityWebRequest configured to send form data to a server via HTTP POST.</para>
-      </summary>
-      <param name="uri">The target URI to which form data will be transmitted.</param>
-      <param name="multipartFormSections">A list of form fields or files to be formatted and transmitted to the remote server.</param>
-      <param name="boundary">A unique boundary string, which will be used when separating form fields in a multipart form.  If not supplied, a boundary will be generated for you.</param>
-      <returns>
-        <para>A UnityWebRequest configured to send form data to uri via POST.</para>
-      </returns>
-    </member>
-    <member name="M:UnityEngine.Networking.UnityWebRequest.Post(System.Uri,System.Collections.Generic.List`1&lt;UnityEngine.Networking.IMultipartFormSection&gt;)">
       <summary>
         <para>Create a UnityWebRequest configured to send form data to a server via HTTP POST.</para>
       </summary>
@@ -857,67 +819,12 @@
         <para>A UnityWebRequest configured to send form data to uri via POST.</para>
       </returns>
     </member>
-    <member name="M:UnityEngine.Networking.UnityWebRequest.Post(System.Uri,System.Collections.Generic.List`1&lt;UnityEngine.Networking.IMultipartFormSection&gt;,System.Byte[])">
-      <summary>
-        <para>Create a UnityWebRequest configured to send form data to a server via HTTP POST.</para>
-      </summary>
-      <param name="uri">The target URI to which form data will be transmitted.</param>
-      <param name="multipartFormSections">A list of form fields or files to be formatted and transmitted to the remote server.</param>
-      <param name="boundary">A unique boundary string, which will be used when separating form fields in a multipart form.  If not supplied, a boundary will be generated for you.</param>
-      <returns>
-        <para>A UnityWebRequest configured to send form data to uri via POST.</para>
-      </returns>
-    </member>
     <member name="M:UnityEngine.Networking.UnityWebRequest.Post(System.String,System.Collections.Generic.Dictionary`2&lt;System.String,System.String&gt;)">
       <summary>
         <para>Create a UnityWebRequest configured to send form data to a server via HTTP POST.</para>
       </summary>
       <param name="uri">The target URI to which form data will be transmitted.</param>
       <param name="formFields">Strings indicating the keys and values of form fields. Will be automatically formatted into a URL-encoded form body.</param>
-      <returns>
-        <para>A UnityWebRequest configured to send form data to uri via POST.</para>
-      </returns>
-    </member>
-    <member name="M:UnityEngine.Networking.UnityWebRequest.Post(System.Uri,System.Collections.Generic.Dictionary`2&lt;System.String,System.String&gt;)">
-      <summary>
-        <para>Create a UnityWebRequest configured to send form data to a server via HTTP POST.</para>
-      </summary>
-      <param name="uri">The target URI to which form data will be transmitted.</param>
-      <param name="formFields">Strings indicating the keys and values of form fields. Will be automatically formatted into a URL-encoded form body.</param>
-      <returns>
-        <para>A UnityWebRequest configured to send form data to uri via POST.</para>
-      </returns>
-    </member>
-    <member name="M:UnityEngine.Networking.UnityWebRequest.Post(System.String,System.String)">
-      <summary>
-        <para>TODO.</para>
-      </summary>
-      <param name="uri"></param>
-      <param name="postData"></param>
-    </member>
-    <member name="M:UnityEngine.Networking.UnityWebRequest.Post(System.Uri,System.String)">
-      <summary>
-        <para>TODO.</para>
-      </summary>
-      <param name="uri"></param>
-      <param name="postData"></param>
-    </member>
-    <member name="M:UnityEngine.Networking.UnityWebRequest.PostWwwForm(System.String,System.String)">
-      <summary>
-        <para>Creates a UnityWebRequest configured to send form data to a server via HTTP POST.</para>
-      </summary>
-      <param name="uri">The target URI to which form data will be transmitted.</param>
-      <param name="form">An HTML form to send.</param>
-      <returns>
-        <para>A UnityWebRequest configured to send form data to uri via POST.</para>
-      </returns>
-    </member>
-    <member name="M:UnityEngine.Networking.UnityWebRequest.PostWwwForm(System.Uri,System.String)">
-      <summary>
-        <para>Creates a UnityWebRequest configured to send form data to a server via HTTP POST.</para>
-      </summary>
-      <param name="uri">The target URI to which form data will be transmitted.</param>
-      <param name="form">An HTML form to send.</param>
       <returns>
         <para>A UnityWebRequest configured to send form data to uri via POST.</para>
       </returns>
@@ -1087,19 +994,6 @@ You can yield until it continues, register an event handler with AsyncOperation.
         <para>General constructor. Contents of the input argument are copied into a native buffer.</para>
       </summary>
       <param name="data">Raw data to transmit to the remote server.</param>
-    </member>
-    <member name="M:UnityEngine.Networking.UploadHandlerRaw.#ctor(Unity.Collections.NativeArray`1&lt;System.Byte&gt;,System.Boolean)">
-      <summary>
-        <para>Creates an upload handler using NativeArray.</para>
-      </summary>
-      <param name="data">The raw data to transmit to the remote server.</param>
-      <param name="transferOwnership">When true, the upload handler takes ownership of the passed NativeArray. This means the upload handler will dispose of the NativeArray when the upload handler itself is disposed of. When false, NativeArray is owned by the caller and you must ensure it remains valid until the upload is complete.</param>
-    </member>
-    <member name="M:UnityEngine.Networking.UploadHandlerRaw.#ctor(Unity.Collections.NativeArray`1/ReadOnly&lt;System.Byte&gt;)">
-      <summary>
-        <para>Creates an upload handler using a read-only NativeArray. The passed array is owned by the caller and you must ensure it remains valid until the upload is complete.</para>
-      </summary>
-      <param name="data">The raw data to transmit to the remote server.</param>
     </member>
     <member name="A:UnityEngine.UnityWebRequestModule">
       <summary>

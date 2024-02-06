@@ -74,9 +74,7 @@
     </member>
     <member name="M:UnityEngine.Audio.AudioMixer.SetFloat(System.String,System.Single)">
       <summary>
-        <para>Sets the value of the exposed parameter specified. When a parameter is exposed, it is not controlled by mixer snapshots. You can only change the parameter with this function.
-
-Note: Calling this function in MonoBehaviour.Awake will result in unexpected behavior. Use MonoBehaviour.Start instead.</para>
+        <para>Sets the value of the exposed parameter specified. When a parameter is exposed, it is not controlled by mixer snapshots and can therefore only be changed via this function.</para>
       </summary>
       <param name="name">Name of exposed parameter.</param>
       <param name="value">New value of exposed parameter.</param>
@@ -1061,7 +1059,7 @@ Note: Calling this function in MonoBehaviour.Awake will result in unexpected beh
     </member>
     <member name="P:UnityEngine.AudioSettings.speakerMode">
       <summary>
-        <para>AudioSettings.speakerMode is deprecated. Use AudioSettings.GetConfiguration and AudioSettings.Reset to adjust audio settings instead.</para>
+        <para>Gets the current speaker mode. Default is 2 channel stereo.</para>
       </summary>
     </member>
     <member name="T:UnityEngine.AudioSettings.AudioConfigurationChangeHandler">
@@ -1145,7 +1143,7 @@ Note: Calling this function in MonoBehaviour.Awake will result in unexpected beh
     </member>
     <member name="M:UnityEngine.AudioSettings.Reset(UnityEngine.AudioConfiguration)">
       <summary>
-        <para>Performs a change of the device configuration. In response to this the AudioSettings.OnAudioConfigurationChanged delegate is invoked with the argument deviceWasChanged=false. It cannot be guaranteed that the exact settings specified can be used, but an attempt is made to use the closest match supported by the system.</para>
+        <para>Performs a change of the device configuration. In response to this the AudioSettings.OnAudioConfigurationChanged delegate is invoked with the argument deviceWasChanged=false. It cannot be guaranteed that the exact settings specified can be used, but the an attempt is made to use the closest match supported by the system.</para>
       </summary>
       <param name="config">The new configuration to be used.</param>
       <returns>
@@ -1186,11 +1184,6 @@ Note: Calling this function in MonoBehaviour.Awake will result in unexpected beh
     <member name="P:UnityEngine.AudioSource.dopplerLevel">
       <summary>
         <para>Sets the Doppler scale for this AudioSource.</para>
-      </summary>
-    </member>
-    <member name="P:UnityEngine.AudioSource.gamepadSpeakerOutputType">
-      <summary>
-        <para>Gets or sets the gamepad audio output type for this audio source.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.AudioSource.ignoreListenerPause">
@@ -1318,23 +1311,6 @@ Note: Calling this function in MonoBehaviour.Awake will result in unexpected beh
         <para>The volume of the audio source (0.0 to 1.0).</para>
       </summary>
     </member>
-    <member name="M:UnityEngine.AudioSource.DisableGamepadOutput">
-      <summary>
-        <para>Disables audio output to a gamepad for this audio source.</para>
-      </summary>
-      <returns>
-        <para>Returns true if successful.</para>
-      </returns>
-    </member>
-    <member name="M:UnityEngine.AudioSource.GamepadSpeakerSupportsOutputType(UnityEngine.GamepadSpeakerOutputType)">
-      <summary>
-        <para>Check if the platform supports an audio output type  on gamepads.</para>
-      </summary>
-      <param name="outputType">The desired output type.</param>
-      <returns>
-        <para>Returns true if the gamepad supports the specified audio output type.</para>
-      </returns>
-    </member>
     <member name="M:UnityEngine.AudioSource.GetAmbisonicDecoderFloat(System.Int32,System.Single&amp;)">
       <summary>
         <para>Reads a user-defined parameter of a custom ambisonic decoder effect that is attached to an AudioSource.</para>
@@ -1446,15 +1422,6 @@ Note: Calling this function in MonoBehaviour.Awake will result in unexpected beh
       </summary>
       <param name="clip">The clip being played.</param>
       <param name="volumeScale">The scale of the volume (0-1).</param>
-    </member>
-    <member name="M:UnityEngine.AudioSource.PlayOnGamepad(System.Int32)">
-      <summary>
-        <para>Enable playing of audio source though a specfic gamepad.</para>
-      </summary>
-      <param name="slot">Slot number of the gamepad (0-3).</param>
-      <returns>
-        <para>Returns TRUE if enabling audio output through this users controller was successful.</para>
-      </returns>
     </member>
     <member name="M:UnityEngine.AudioSource.PlayScheduled(System.Double)">
       <summary>
@@ -1779,26 +1746,6 @@ Note: Calling this function in MonoBehaviour.Awake will result in unexpected beh
         <para>W[n] = TRI(2n/N).</para>
       </summary>
     </member>
-    <member name="T:UnityEngine.GamepadSpeakerOutputType">
-      <summary>
-        <para>Gamepad audio output types.</para>
-      </summary>
-    </member>
-    <member name="F:UnityEngine.GamepadSpeakerOutputType.SecondaryVibration">
-      <summary>
-        <para>Audio output is through a secondary gamepad's vibration device if supported.</para>
-      </summary>
-    </member>
-    <member name="F:UnityEngine.GamepadSpeakerOutputType.Speaker">
-      <summary>
-        <para>Audio output is through the gamepads audio speaker if the gamepad supports playing audio.</para>
-      </summary>
-    </member>
-    <member name="F:UnityEngine.GamepadSpeakerOutputType.Vibration">
-      <summary>
-        <para>Audio output is through the gamepads vibration device if the gamepad supports playing audio as vibration.</para>
-      </summary>
-    </member>
     <member name="T:UnityEngine.Microphone">
       <summary>
         <para>Use this class to record to an AudioClip using a connected microphone.</para>
@@ -2073,51 +2020,36 @@ Note: Calling this function in MonoBehaviour.Awake will result in unexpected beh
     </member>
     <member name="M:UnityEngine.WebCamTexture.GetPixel(System.Int32,System.Int32)">
       <summary>
-        <para>Gets the pixel color at coordinates (x, y).</para>
+        <para>Returns pixel color at coordinates (x, y).</para>
       </summary>
-      <param name="x">The x coordinate of the pixel to get. The range is 0 through the (texture width - 1).</param>
-      <param name="y">The y coordinate of the pixel to get. The range is 0 through the (texture height - 1).</param>
-      <returns>
-        <para>The pixel color.</para>
-      </returns>
+      <param name="x"></param>
+      <param name="y"></param>
     </member>
     <member name="M:UnityEngine.WebCamTexture.GetPixels">
       <summary>
-        <para>Gets the pixel color data for a mipmap level as Color structs.</para>
+        <para>Get a block of pixel colors.</para>
       </summary>
-      <returns>
-        <para>An array that contains the pixel colors.</para>
-      </returns>
     </member>
     <member name="M:UnityEngine.WebCamTexture.GetPixels(System.Int32,System.Int32,System.Int32,System.Int32)">
       <summary>
-        <para>Gets the pixel color data for part of the texture as Color structs.</para>
+        <para>Get a block of pixel colors.</para>
       </summary>
-      <param name="x">The starting x position of the section to fetch.</param>
-      <param name="y">The starting y position of the section to fetch.</param>
-      <param name="blockWidth">The width of the section to fetch.</param>
-      <param name="blockHeight">The height of the section to fetch.</param>
-      <returns>
-        <para>An array that contains the pixel colors.</para>
-      </returns>
+      <param name="x"></param>
+      <param name="y"></param>
+      <param name="blockWidth"></param>
+      <param name="blockHeight"></param>
     </member>
     <member name="M:UnityEngine.WebCamTexture.GetPixels32()">
       <summary>
-        <para>Gets the pixel color data for a mipmap level as Color32 structs.</para>
+        <para>Returns the pixels data in raw format.</para>
       </summary>
-      <param name="colors">An optional array to write the pixel data to.</param>
-      <returns>
-        <para>An array that contains the pixel colors.</para>
-      </returns>
+      <param name="colors">Optional array to receive pixel data.</param>
     </member>
     <member name="M:UnityEngine.WebCamTexture.GetPixels32(UnityEngine.Color32[])">
       <summary>
-        <para>Gets the pixel color data for a mipmap level as Color32 structs.</para>
+        <para>Returns the pixels data in raw format.</para>
       </summary>
-      <param name="colors">An optional array to write the pixel data to.</param>
-      <returns>
-        <para>An array that contains the pixel colors.</para>
-      </returns>
+      <param name="colors">Optional array to receive pixel data.</param>
     </member>
     <member name="M:UnityEngine.WebCamTexture.Pause">
       <summary>
