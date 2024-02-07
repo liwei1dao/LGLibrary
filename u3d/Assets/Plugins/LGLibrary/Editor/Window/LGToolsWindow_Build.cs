@@ -2,6 +2,8 @@ using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
+using System.IO;
 
 namespace LG.Editor
 {
@@ -56,7 +58,7 @@ namespace LG.Editor
         [InlineEditor(Expanded = true)]
         public PackingConfig Config = PackingConfig.Instance;
 
-        [Button("ˢ��", ButtonSizes.Large)]
+        [Button("刷新", ButtonSizes.Large)]
         private void RefreshButton()
         {
             Config.ModelBuildConfig.Clear();
@@ -66,7 +68,7 @@ namespace LG.Editor
             }
         }
 
-        [Button("����", ButtonSizes.Large)]
+        [Button("编译", ButtonSizes.Large)]
         private void BuildButton()
         {
             EditorApplication.delayCall += BuildResourceModel;

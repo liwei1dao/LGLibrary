@@ -67,5 +67,5 @@
     }
   ],
   "omnisharp.useModernNet": false,
-  "dotnet.defaultSolution": "lg.sln"
+  "dotnet.defaultSolution": "u3d.sln"
 }

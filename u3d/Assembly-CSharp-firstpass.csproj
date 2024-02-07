@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{c40ca839-b7b9-6e2d-acf4-78ad1c9fc30e}</ProjectGuid>
+    <ProjectGuid>{8f28c1a9-3f30-b99d-1286-609da76659fa}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp-Editor-firstpass</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -36,17 +36,56 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Plugins\LGLibrary\Editor\HelperTools\EditorCoroutineRunner.cs" />
-     <Compile Include="Assets\Plugins\LGLibrary\Editor\Window\LGToolsWindow_Hose.cs" />
-     <Compile Include="Assets\Plugins\LGLibrary\Editor\Window\LGToolsWindow_Build.cs" />
-     <Compile Include="Assets\Plugins\Sirenix\Demos\Editor Windows\Scripts\Editor\OverrideGetTargetsExampleWindow.cs" />
-     <Compile Include="Assets\Plugins\Sirenix\Demos\Editor Windows\Scripts\Editor\SomeTextureToolWindow.cs" />
-     <Compile Include="Assets\Plugins\LGLibrary\Editor\Window\LGToolsWindow.cs" />
-     <Compile Include="Assets\Plugins\Sirenix\Demos\Editor Windows\Scripts\Editor\OdinMenuStyleExample.cs" />
-     <Compile Include="Assets\Plugins\Sirenix\Demos\Editor Windows\Scripts\Editor\OdinMenuEditorWindowExample.cs" />
-     <Compile Include="Assets\Plugins\Sirenix\Demos\Editor Windows\Scripts\Editor\BasicOdinEditorExampleWindow.cs" />
-     <Compile Include="Assets\Plugins\Sirenix\Demos\Editor Windows\Scripts\Editor\SomeData.cs" />
-     <Compile Include="Assets\Plugins\Sirenix\Demos\Editor Windows\Scripts\Editor\QuicklyInspectObjects.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\AssetBundleComp.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\EditorResourComp.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\SceneModule\SceneControl\ScenesDefaultCheduler.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Utility\String\StringExtend.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Utility\Files\FilesExtend.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Core\ModelCompBase.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Config\EditorConfig.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Core\ModelBase.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\SceneModule\SceneControl\IScenesChedulerBase.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Core\CommonModuleComp\Module_BaseViewComp.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Sys\Log\Log.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Core\ModuleManger.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\AppBuileInfo.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\CoroutineModule\CoroutineTask.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Config\AppConfig.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\LGMain.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Utility\Unity3d\GameObjectExtend.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Config\PackingConfig.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Core\CommonModuleComp\Module_ResourceComp.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\ResourceModel.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Core\CommonModuleComp\Module_CoroutineComp.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Utility\Files\ZipTools.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\ViewManagerModule\ViewManagerModule.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\SceneModule\SceneLoadingViewComp.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\SceneModule\SceneModel.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Utility\Json\MiniJSON.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\SceneModule\SceneControl\ISceneLoadCompBase.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\CoroutineModule\CoroutineModuleDataComp.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\ILoadViewComp.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Utility\Json\SimpleJSON.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Config\AppDefinit.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\SceneModule\SceneChedulerComp.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Utility\Json\JsonTools.cs" />
+     <Compile Include="Assets\Plugins\LGLibrary\Modules\CoroutineModule\CoroutineModule.cs" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\NoEditor\Sirenix.Serialization.dll.backup.txt" />
+     <None Include="Assets\Plugins\Sirenix\Odin Inspector\Scripts\Sirenix.OdinInspector.CompatibilityLayer.asmdef.backup.txt" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\link.xml.backup.txt" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\AOT\link.xml" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\NoEmitAndNoEditor\Sirenix.Serialization.dll.backup.txt" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\NoEmitAndNoEditor\Sirenix.Utilities.dll.backup.txt" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.xml" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.xml" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.dll.backup.txt" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.xml" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.xml" />
+     <None Include="Assets\Plugins\Sirenix\Readme.txt" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.xml" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\AOT\link.xml.backup.txt" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\NoEditor\Sirenix.Utilities.dll.backup.txt" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.xml" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -79,12 +118,6 @@
     </Reference>
     <Reference Include="UnityEngine.CloudFoundationModule">
         <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.CloudFoundationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ClusterInputModule">
-        <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.ClusterInputModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ClusterRendererModule">
-        <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.ClusterRendererModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
         <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
@@ -239,9 +272,6 @@
     <Reference Include="UnityEngine.VideoModule">
         <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.VideoModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.VirtualTexturingModule">
-        <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.VirtualTexturingModule.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.WindModule">
         <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.WindModule.dll</HintPath>
     </Reference>
@@ -275,23 +305,8 @@
     <Reference Include="UnityEditor.UnityConnectModule">
         <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.Graphs">
-        <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Android.Extensions">
-        <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
-        <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Plastic.Newtonsoft.Json">
-        <HintPath>E:\c#\LGLibrary\u3d\Library\PackageCache\com.unity.collab-proxy@1.15.1\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.Serialization.AOTGenerated">
         <HintPath>E:\c#\LGLibrary\u3d\Assets\Plugins\Sirenix\Assemblies\AOT\Sirenix.Serialization.AOTGenerated.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Plastic.Antlr3.Runtime">
-        <HintPath>E:\c#\LGLibrary\u3d\Library\PackageCache\com.unity.collab-proxy@1.15.1\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
         <HintPath>E:\c#\LGLibrary\u3d\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -299,14 +314,8 @@
     <Reference Include="Sirenix.OdinInspector.Editor">
         <HintPath>E:\c#\LGLibrary\u3d\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="unityplastic">
-        <HintPath>E:\c#\LGLibrary\u3d\Library\PackageCache\com.unity.collab-proxy@1.15.1\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.OdinInspector.Attributes">
         <HintPath>E:\c#\LGLibrary\u3d\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
-    </Reference>
-    <Reference Include="log4netPlastic">
-        <HintPath>E:\c#\LGLibrary\u3d\Library\PackageCache\com.unity.collab-proxy@1.15.1\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Serialization.Config">
         <HintPath>E:\c#\LGLibrary\u3d\Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.dll</HintPath>
@@ -322,9 +331,6 @@
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
         <HintPath>E:\c#\LGLibrary\u3d\Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-        <HintPath>E:\c#\LGLibrary\u3d\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
         <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -674,12 +680,6 @@
     <Reference Include="System.Xml.XPath.XDocument">
         <HintPath>D:\Program Files\Unity3d\Unity 2020.3.23f1c1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.TestRunner">
-        <HintPath>E:\c#\LGLibrary\u3d\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.TestRunner">
-        <HintPath>E:\c#\LGLibrary\u3d\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VSCode.Editor">
         <HintPath>E:\c#\LGLibrary\u3d\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
@@ -712,10 +712,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{8f28c1a9-3f30-b99d-1286-609da76659fa}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj">
       <Project>{a10e6e77-4a76-a17a-b4fb-a85314cb77d7}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer.Editor</Name>
