@@ -123,5 +123,23 @@ namespace LG
             }
         }
 
+        /// <summary>
+        ///  清理子对象
+        /// </summary>
+        /// <param name="Target"></param>
+        public static void ClearChilds(this GameObject Target)
+        {
+            for (int i = 0; i < Target.transform.childCount; i++)
+            {
+                Transform child = Target.transform.GetChild(i);
+#if UNITY_EDITOR
+                GameObject.DestroyImmediate(child.gameObject);
+#else
+                GameObject.Destroy(child.gameObject);
+#endif
+
+            }
+        }
+
     }
 }

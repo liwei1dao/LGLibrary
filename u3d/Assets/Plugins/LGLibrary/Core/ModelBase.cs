@@ -65,7 +65,7 @@ namespace LG
         /// <summary>
         /// 模块状态
         /// </summary>
-        [LabelText("模块状态"),ReadOnly]
+        [LabelText("模块状态"), ReadOnly]
         public ModelState State = ModelState.Close;
         /// <summary>
         /// 组件列表
@@ -74,7 +74,7 @@ namespace LG
         protected List<ModelCompBase> Comps = new List<ModelCompBase>();
         protected Module_CoroutineComp CoroutineComp;                               //协程组件（需要则初始化）
         protected Module_ResourceComp ResourceComp;                                 //资源管理组件（需要则初始化）
-
+        protected Module_SoundComp SoundComp;                                       //声音组件 （需要则初始化）
         public ModuleBase()
         {
             State = ModelState.Close;
@@ -203,6 +203,73 @@ namespace LG
             }
             return CoroutineComp.StartCoroutine(coroutine);
         }
+        #endregion
+
+        #region 声音组件
+        public AudioSource PlayMusic(string Music, bool IsBackMusic = false)
+        {
+            if (SoundComp == null)
+            {
+                Debug.LogError(ModuleName + " No Load SoundComp");
+                return null;
+            }
+            return SoundComp.PlayMusic(Music, IsBackMusic);
+        }
+        public AudioSource PlayMusic(AudioClip Music, bool IsBackMusic = false)
+        {
+            if (SoundComp == null)
+            {
+                Debug.LogError(ModuleName + " No Load SoundComp");
+                return null;
+            }
+            return SoundComp.PlayMusic(Music, IsBackMusic);
+        }
+        public AudioSource PlayMusic(string Music, float MusicValue, bool IsBackMusic = false)
+        {
+            if (SoundComp == null)
+            {
+                Debug.LogError(ModuleName + " No Load SoundComp");
+                return null;
+            }
+            return SoundComp.PlayMusic(Music, MusicValue, IsBackMusic);
+        }
+        public AudioSource PlayMusic(AudioClip Music, float MusicValue, bool IsBackMusic = false)
+        {
+            if (SoundComp == null)
+            {
+                Debug.LogError(ModuleName + " No Load SoundComp");
+                return null;
+            }
+            return SoundComp.PlayMusic(Music, MusicValue, IsBackMusic);
+        }
+        public void StopBackMusic()
+        {
+            if (SoundComp == null)
+            {
+                Debug.LogError(ModuleName + " No Load SoundComp");
+            }
+            SoundComp.StopBackMusic();
+        }
+
+        public void PauseBackMusic()
+        {
+            if (SoundComp == null)
+            {
+                Debug.LogError(ModuleName + " No Load SoundComp");
+                return;
+            }
+            SoundComp.PauseBackMusic();
+        }
+        public void UnPauseBackMusic()
+        {
+            if (SoundComp == null)
+            {
+                Debug.LogError(ModuleName + " No Load SoundComp");
+                return;
+            }
+            SoundComp.UnPauseBackMusic();
+        }
+
         #endregion
 
     }

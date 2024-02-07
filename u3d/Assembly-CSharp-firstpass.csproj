@@ -66,9 +66,14 @@
     <Compile Include="Assets\Plugins\LGLibrary\Modules\SceneModule\SceneChedulerComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\EditorResourComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Core\ModuleManger.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SoundModule\SoundDataComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Core\CommonModuleComp\Module_CoroutineComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\SceneModule\SceneModel.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\ObjectPoolModule\ObjectPoolModule.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SoundModule\SoundModule.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Core\CommonModuleComp\Module_SoundComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Config\PackingConfig.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\ObjectPoolModule\Pools.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\LGMain.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\ViewManagerModule\ViewManagerModule.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\CoroutineModule\CoroutineModuleDataComp.cs" />
@@ -78,6 +83,7 @@
     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\AssetBundleComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Utility\Files\FilesExtend.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Utility\Json\MiniJSON.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\ObjectPoolModule\ObjectPoolsComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\ILoadViewComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\ResourceModel.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Core\CommonModuleComp\Module_BaseViewComp.cs" />
