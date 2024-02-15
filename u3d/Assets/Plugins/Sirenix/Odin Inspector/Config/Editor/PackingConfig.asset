@@ -12,11 +12,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60575fe247dbcfa4cb47484127258df8, type: 3}
   m_Name: PackingConfig
   m_EditorClassIdentifier: 
-  BuildPlatform: 0
-  BuildTarget: 0
+  BuildPlatform: 1
+  BuildTarget: 2
   ProVersion: 0
   ResVersion: 0
-  IsCompress: 0
+  IsCompress: 1
   ResourceOutPath: E:/c#/LGLibrary/u3d/Assets/StreamingAssets
-  ResourceCatalog: []
-  ModelBuildConfig: []
+  ResourceCatalog:
+  - Name: app
+    Path: /app
+  ModelBuildConfig:
+  - Name: TestModule
+    Path: /app\TestModule
+    RootName: /app
+    ModelName: TestModule
+    AssetBundleName: TestModule
+    Layer: 0
+    NodelType: 1
+    Foldout: 1
+    IsMergeBuild: 0
+    IsShowBuildToogle: 1
+    ChildBuildItem:
+    - Name: Image
+      Path: /app\TestModule\Image
+      RootName: /app
+      ModelName: TestModule
+      AssetBundleName: TestModule/Image
+      Layer: 1
+      NodelType: 2
+      Foldout: 1
+      IsMergeBuild: 1
+      IsShowBuildToogle: 1
+      ChildBuildItem:
+      - Name: btn_action_blue
+        Path: /app\TestModule\Image\btn_action_blue.png
+        RootName: /app
+        ModelName: TestModule
+        AssetBundleName: TestModule/Image
+        Layer: 2
+        NodelType: 3
+        Foldout: 0
+        IsMergeBuild: 1
+        IsShowBuildToogle: 0
+        ChildBuildItem: []
+    IsSelection: 1
+    IsUpdataModule: 0
