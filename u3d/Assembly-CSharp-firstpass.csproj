@@ -69,8 +69,10 @@
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\ExpressFullScreenVideoAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\GoogleSignInModule\GoogleSignIn\Impl\SignInHelperObject.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\InteractionAd.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\PhoneSys\Phone_AndroidComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\ExpressAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\ExpressInterstitialAdComp.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\PhoneSys\Phone.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\IRewardAdInteractionListener.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\AdmobModule\Admob_BannerAd_Comp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\RewardVideoAd.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Android\FullScreenVideoAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\ExpressInterstitialAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\CoroutineModule\CoroutineModuleDataComp.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\TimerModule\TimerModule.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\DrawFeedAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\BUExpressSplashAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\ExpressFeedAdComp.cs" />
@@ -97,6 +100,7 @@
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\ExpressBannerAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Utility\String\StringExtend.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\SceneModule\SceneChedulerComp.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\WeChat\Wechat_IOSComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\GoogleSignInModule\GoogleSignIn\Future.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\IInteractionAdListener.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\BUSplashAd.cs" />
@@ -104,12 +108,14 @@
     <Compile Include="Assets\Plugins\LGLibrary\Modules\GoogleSignInModule\GoogleSignIn\Impl\BaseObject.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\ISplashAdListener.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\IDrawFeedAdListener.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\TimerModule\TimerModuleDataComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Config\AdvConfig.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\GoogleSignInModule\GoogleSignInModule.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Android\NativeAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Core\CommonModuleComp\Module_ResourceComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\GoogleSignInModule\GoogleSignIn\Impl\NativeFuture.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\AssetBundleComp.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\WeChat\ShareContent.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\BUSplashAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\IFullScreenVideoAdInteractionListener.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\AdNative.cs" />
@@ -118,8 +124,10 @@
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\ExpressRewardVideoAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\AdOrientation.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Utility\Files\FilesExtend.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Utility\Container\BinaryTreeDataPool\KeyedPriorityQueueHeadChangedEventArgs.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Utility\Json\MiniJSON.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\ObjectPoolModule\ObjectPoolsComp.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\SDKMessageReceiveComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\FullScreenVideoAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\ExpressRewardAdComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\ILoadViewComp.cs" />
@@ -127,8 +135,10 @@
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Android\ExpressRewardVideoAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Android\AppDownloadListener.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\IInteractionAdInteractionListener.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\EventModule\EventModuleDataComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\EditorResourComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Android\ExpressFullScreenVideoAd.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\SDKManagerModule.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Android\AdSlotTypeAndroid.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\ISplashAdInteractionListener.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdvModule.cs" />
@@ -139,17 +149,22 @@
     <Compile Include="Assets\Plugins\LGLibrary\Modules\GoogleSignInModule\GoogleSignIn\GoogleSignIn.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Android\RewardVideoAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\ResourceModule\ResourceModel.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\SdkObject.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Core\CommonModuleComp\Module_BaseViewComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\SceneModule\SceneControl\ISceneLoadCompBase.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Core\ModuleManger.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Core\CommonModuleComp\Module_TimerComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\SDK.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\WeChat\WeChat.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\AdmobModule\Admob_InterstitialAd_Comp.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\EventModule\EventModule.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\BaiDu\BaiDu.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\IFullScreenVideoAdListener.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\AdmobModule\AdmobModule.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\ExpressFullScreenVideoAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\ExpressAd.cs" />
-    <Compile Include="Assets\Plugins\LGLibrary\Modules\GoogleSignInModule\GoogleSignIn\GoogleSignInUser.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Android\BannerAd.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\GoogleSignInModule\GoogleSignIn\GoogleSignInUser.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\ExpressFullScreenVideoAdComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Android\DrawFeedAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\GoogleSignInModule\GoogleSignIn\Impl\GoogleSignInImpl.cs" />
@@ -174,23 +189,27 @@
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\IBannerAdInteractionListener.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Android\AdOrientationAndroid.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\IAppDownloadListener.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\PhoneSys\Phone_IOSComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Core\CommonModuleComp\Module_CoroutineComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\INativeAdListener.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\UnityDispatcher.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\BaiDu\BaiDu_AndroidComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\GoogleSignInModule\GoogleSignIn\GoogleSignInConfiguration.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Core\CommonModuleComp\Module_AdvManager_Comp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\SceneModule\SceneModel.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\GooglePayModule\GooglePayModule.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\NativeAdManager.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\SplashAdComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\ObjectPoolModule\ObjectPoolModule.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\SoundModule\SoundModule.cs" />
-    <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\IBannerAdListener.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\AdDislike.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\IBannerAdListener.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\ExpressBannerAdComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\DrawFeedAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\BannerAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\GoogleSignInModule\GoogleSignIn\GoogleSignInStatusCode.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\FeedAd.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Core\CommonModuleComp\Module_BaseSceneComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\BannerAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\SceneModule\SceneControl\IScenesChedulerBase.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\ExpressBannerAd.cs" />
@@ -202,11 +221,16 @@
     <Compile Include="Assets\Plugins\LGLibrary\Modules\GooglePayModule\GooglePay_Api_Comp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\InteractionAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\NativeAd.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\WeChat\Wechat_AndroidComp.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\Dummy\NativeAd.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Utility\Container\BinaryTreeDataPool\BinaryHeap.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\PangleTools.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\AdSlotType.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\PangolinAdvModule\Script\PangolinAdv\iOS\SplashAd.cs" />
     <Compile Include="Assets\Plugins\LGLibrary\Modules\ObjectPoolModule\Pools.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Script\BaiDu\BaiDu_IOSComp.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Modules\TimerModule\TimerDataBase.cs" />
+    <Compile Include="Assets\Plugins\LGLibrary\Utility\Container\BinaryTreeDataPool\KeyedPriorityQueue.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\Sirenix\Assemblies\NoEditor\Sirenix.Serialization.dll.backup.txt" />
@@ -228,6 +252,7 @@
     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.xml" />
     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll" />
     <None Include="Assets\Plugins\Sirenix\Assemblies\NoEditor\Sirenix.Utilities.dll" />
+    <None Include="Assets\Plugins\LGLibrary\Modules\SDKManagerModule\Plugins\WeChat\IOS\README.txt" />
     <None Include="Assets\Plugins\Sirenix\Readme.txt" />
     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.xml" />
     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll" />
@@ -482,6 +507,12 @@
     <Reference Include="Sirenix.Serialization.AOTGenerated">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\AOT\Sirenix.Serialization.AOTGenerated.dll</HintPath>
     </Reference>
+    <Reference Include="GoogleMobileAds.Common">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="GoogleMobileAds">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.dll</HintPath>
+    </Reference>
     <Reference Include="Sirenix.Serialization">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
     </Reference>
@@ -491,11 +522,23 @@
     <Reference Include="Sirenix.OdinInspector.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="GoogleMobileAds.Core">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Utilities">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Ump.Unity">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Ump">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll</HintPath>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Unity">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
@@ -505,24 +548,6 @@
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Unity">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Core">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Common">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Ump">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Ump.Unity">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.13f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>

@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace LG
 {
@@ -80,7 +82,23 @@ namespace LG
             return child;
         }
 
+        /// <summary>
+        ///  清理子对象
+        /// </summary>
+        /// <param name="Target"></param>
+        public static void ClearChilds(this GameObject Target)
+        {
+            for (int i = 0; i < Target.transform.childCount; i++)
+            {
+                Transform child = Target.transform.GetChild(i);
+#if UNITY_EDITOR
+                GameObject.DestroyImmediate(child.gameObject);
+#else
+                GameObject.Destroy(child.gameObject);
+#endif
 
+            }
+        }
         /// <summary>
         /// 查找添加组件
         /// </summary>
@@ -123,23 +141,13 @@ namespace LG
             }
         }
 
-        /// <summary>
-        ///  清理子对象
-        /// </summary>
-        /// <param name="Target"></param>
-        public static void ClearChilds(this GameObject Target)
+
+
+        //添加按钮事件
+        public static void OnAddClick(this GameObject Target, string Childpath, UnityAction call)
         {
-            for (int i = 0; i < Target.transform.childCount; i++)
-            {
-                Transform child = Target.transform.GetChild(i);
-#if UNITY_EDITOR
-                GameObject.DestroyImmediate(child.gameObject);
-#else
-                GameObject.Destroy(child.gameObject);
-#endif
-
-            }
+            Button butt = Target.OnSubmit<Button>(Childpath);
+            butt.onClick.AddListener(call);
         }
-
     }
 }

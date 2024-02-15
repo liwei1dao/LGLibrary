@@ -48,7 +48,11 @@ namespace LG
         /// <param name="agrs"></param>
         void LGClose();
     }
-
+    //更新模块
+    public interface IUpdataMode : IModule
+    {
+        void Update(float time);
+    }
     [Serializable]
     public abstract class ModuleBase : IModule
     {
@@ -73,6 +77,7 @@ namespace LG
         [ShowInInspector, LabelText("组件列表")]
         protected List<ModelCompBase> Comps = new List<ModelCompBase>();
         protected Module_CoroutineComp CoroutineComp;                               //协程组件（需要则初始化）
+        protected Module_TimerComp TimerComp;                                       //计时器组件 （需要则初始化）
         protected Module_ResourceComp ResourceComp;                                 //资源管理组件（需要则初始化）
         protected Module_SoundComp SoundComp;                                       //声音组件 （需要则初始化）
         public ModuleBase()
@@ -203,6 +208,39 @@ namespace LG
             }
             return CoroutineComp.StartCoroutine(coroutine);
         }
+        #endregion
+
+        #region 计时器组件扩展
+        /// <summary>
+        /// 启动计时器
+        /// </summary>
+        public uint VP(float start, Action handler)
+        {
+            if (TimerComp == null)
+            {
+                Debug.LogError(ModuleName + " No Load TimerComp");
+                return 0;
+            }
+            return TimerComp.VP(start, handler);
+        }
+
+        /// <summary>
+        /// 启动计时器
+        /// </summary>
+        /// <param name="start">延迟时间</param>
+        /// <param name="interval">间隔时间</param>
+        /// <param name="handler">处理函数</param>
+        /// <returns></returns>
+        public uint VP(float start, int interval, Action handler)
+        {
+            if (TimerComp == null)
+            {
+                Debug.LogError(ModuleName + " No Load TimerComp");
+                return 0;
+            }
+            return TimerComp.VP(start, interval, handler);
+        }
+
         #endregion
 
         #region 声音组件
