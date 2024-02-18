@@ -19,14 +19,9 @@ namespace LG
             base.LGLoad(agrs);
         }
 
-        public void NewObjectPool<T>(string poolname, Func<GameObject, T> cf) where T : UnityEngine.Object
+        public void NewObjectPool(string poolname, Func<GameObject> cf)
         {
             objectPoolsComp.RegisterQueuePool(poolname, cf);
-        }
-
-        public void NewObjectPool<T>(string poolname, Func<string, GameObject, T> cf) where T : UnityEngine.Object
-        {
-            objectPoolsComp.RegisterDictionaryPool(poolname, cf);
         }
 
         public T Get<T>(string poolname) where T : UnityEngine.Object
@@ -34,14 +29,17 @@ namespace LG
             return objectPoolsComp.GetByQueuePool<T>(poolname);
         }
 
-        public T Get<T>(string poolname, string key) where T : UnityEngine.Object
-        {
-            return objectPoolsComp.GetByDictionaryPool<T>(poolname, key);
-        }
-
         public void Push<T>(string poolname, T obj) where T : UnityEngine.Object
         {
             objectPoolsComp.PushByQueuePool<T>(poolname, obj);
+        }
+        public void NewObjectPool<T>(string poolname, Func<string, T> cf) where T : UnityEngine.Object
+        {
+            objectPoolsComp.RegisterDictionaryPool(poolname, cf);
+        }
+        public T Get<T>(string poolname, string key) where T : UnityEngine.Object
+        {
+            return objectPoolsComp.GetByDictionaryPool<T>(poolname, key);
         }
         public void Push<T>(string poolname, string key, T obj) where T : UnityEngine.Object
         {

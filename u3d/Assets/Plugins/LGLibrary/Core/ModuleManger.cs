@@ -10,8 +10,9 @@ namespace LG
     public class ModuleManager : MonoBehaviour
     {
         [ShowInInspector, LabelText("模块列表")]
-        [DictionaryDrawerSettings(KeyLabel = "模块名称", ValueLabel = "模块对象", DisplayMode= DictionaryDisplayOptions.OneLine, IsReadOnly = true)]
-        protected Dictionary<string, ModuleBase> Modules = new Dictionary<string, ModuleBase>();
+        [DictionaryDrawerSettings(KeyLabel = "模块名称", ValueLabel = "模块对象", DisplayMode = DictionaryDisplayOptions.OneLine, IsReadOnly = true)]
+        private Dictionary<string, ModuleBase> modules = new Dictionary<string, ModuleBase>();
+        private List<IUpdataMode> updataModes = new List<IUpdataMode>();
 
         #region 单例接口
         private static ModuleManager instance = null;
@@ -34,22 +35,38 @@ namespace LG
         }
         #endregion
 
-        private void AddModules(ModuleBase module)
+        void Update()
         {
-            Modules.Add(module.ModuleName, module);
+            foreach (var module in updataModes)
+            {
+                if (module.GetState() == ModelState.Runing)
+                {
+                    module.Update(Time.deltaTime);
+                }
+            }
         }
+
+
+        // private void AddModules(ModuleBase module)
+        // {
+        //     modules.Add(module.ModuleName, module);
+        // }
 
         private IEnumerator ModuleStart<T>(T module, ModelLoadBackCall<T> backCall) where T : ModuleBase<T>, new()
         {
             yield return new WaitForEndOfFrame();
             module.LGStart();
             backCall?.Invoke(module);
+            if (module is IUpdataMode)
+            {
+                updataModes.Add(module as IUpdataMode);
+            }
         }
 
         public void StartModule<T>(ModelLoadBackCall<T> backCall = null, params object[] agrs) where T : ModuleBase<T>, new()
         {
             string ModelName = typeof(T).Name;
-            if (!Modules.ContainsKey(ModelName))
+            if (!modules.ContainsKey(ModelName))
             {
                 T module = new T
                 {
@@ -59,7 +76,7 @@ namespace LG
                 {
                     StartCoroutine(ModuleStart<T>(model, backCall));
                 }, agrs);
-                Modules[ModelName] = module;
+                modules[ModelName] = module;
             }
             else
             {
@@ -71,7 +88,7 @@ namespace LG
         public void StartModuleByTag<T>(string tag, ModelLoadBackCall<T> backCall = null, params object[] agrs) where T : ModuleBase<T>, new()
         {
             string ModelName = typeof(T).Name;
-            if (!Modules.ContainsKey(ModelName))
+            if (!modules.ContainsKey(ModelName))
             {
                 T module = new T
                 {
@@ -82,7 +99,7 @@ namespace LG
                 {
                     StartCoroutine(ModuleStart<T>(model, backCall));
                 }, agrs);
-                Modules[ModelName] = module;
+                modules[ModelName] = module;
             }
             else
             {
@@ -92,14 +109,14 @@ namespace LG
 
         public void StartModuleObj<T>(string moduleName, T module, ModelLoadBackCall<T> backCall = null, params object[] agrs) where T : ModuleBase<T>, new()
         {
-            if (!Modules.ContainsKey(moduleName))
+            if (!modules.ContainsKey(moduleName))
             {
                 module.ModuleName = moduleName;
                 module.LGLoad((model) =>
                 {
                     StartCoroutine(ModuleStart<T>(model, backCall));
                 }, agrs);
-                Modules[module.ModuleName] = module;
+                modules[module.ModuleName] = module;
             }
             else
             {
@@ -110,7 +127,7 @@ namespace LG
 
         public T GetModuleByTag<T>(string mtag) where T : class, IModule
         {
-            foreach (var module in Modules)
+            foreach (var module in modules)
             {
                 if (module.Value.ModuleTag == mtag)
                 {
@@ -123,10 +140,15 @@ namespace LG
         public void CloseModule<T>() where T : ModuleBase<T>, new()
         {
             string ModelName = typeof(T).Name;
-            if (Modules.ContainsKey(ModelName))
+            if (modules.ContainsKey(ModelName))
             {
-                Modules[ModelName].LGClose();
-                Modules.Remove(ModelName);
+                if (modules[ModelName] is IUpdataMode)
+                {
+                    updataModes.Remove(modules[ModelName] as IUpdataMode);
+                }
+                modules[ModelName].LGClose();
+                modules.Remove(ModelName);
+
             }
         }
     }

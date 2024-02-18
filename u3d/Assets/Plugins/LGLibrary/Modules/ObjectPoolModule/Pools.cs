@@ -12,9 +12,9 @@ namespace LG
     {
         public GameObject Root;
         public ModuleBase Module;
-        public Func<GameObject, UnityEngine.Object> CreateFun;
+        public Func<UnityEngine.Object> CreateFun;
         public Queue<UnityEngine.Object> Pool;
-        public GameObjectPoolByQueue(string pname, Func<GameObject, UnityEngine.Object> cf)
+        public GameObjectPoolByQueue(string pname, Func<GameObject> cf)
         {
             Root = ObjectPoolModule.Instance.ObjectPools.CreateChild(pname);
             CreateFun = cf;
@@ -29,24 +29,12 @@ namespace LG
             }
             else
             {
-                return CreateFun(Root);
+                return CreateFun();
             }
         }
 
         public void Push(UnityEngine.Object obj)
         {
-            if (obj is GameObject)
-            {
-                GameObject gameObject = obj as GameObject;
-                gameObject.SetParent(Root);
-                gameObject.SetActive(false);
-            }
-            else if (obj is Component)
-            {
-                Component component = obj as Component;
-                component.gameObject.SetParent(Root);
-                component.gameObject.SetActive(false);
-            }
             Pool.Enqueue(obj);
         }
 
@@ -67,9 +55,9 @@ namespace LG
     public class GameObjectPoolByDictionary
     {
         public GameObject Root;
-        public Func<string, GameObject, UnityEngine.Object> CreateFun;
+        public Func<string, UnityEngine.Object> CreateFun;
         public Dictionary<string, Queue<UnityEngine.Object>> Pool;
-        public GameObjectPoolByDictionary(string pname, Func<string, GameObject, UnityEngine.Object> cf)
+        public GameObjectPoolByDictionary(string pname, Func<string, UnityEngine.Object> cf)
         {
             Root = ObjectPoolModule.Instance.ObjectPools.CreateChild(pname);
             CreateFun = cf;
@@ -84,7 +72,7 @@ namespace LG
             }
             else
             {
-                UnityEngine.Object obj = CreateFun(key, Root);
+                UnityEngine.Object obj = CreateFun(key);
                 return obj;
             }
         }
@@ -94,18 +82,6 @@ namespace LG
             if (!Pool.ContainsKey(key))
             {
                 Pool[key] = new Queue<UnityEngine.Object>();
-            }
-            if (obj is GameObject)
-            {
-                GameObject gameObject = obj as GameObject;
-                gameObject.SetParent(Root);
-                gameObject.SetActive(false);
-            }
-            else if (obj is Component)
-            {
-                Component component = obj as Component;
-                component.gameObject.SetParent(Root);
-                component.gameObject.SetActive(false);
             }
             Pool[key].Enqueue(obj);
         }
@@ -119,5 +95,4 @@ namespace LG
             Pool.Clear();
         }
     }
-
 }

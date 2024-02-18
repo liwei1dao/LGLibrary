@@ -35,16 +35,16 @@ namespace LG
             get { return order; }
         }
     }
-  
+
     /// <summary>
     /// 模块组件基类
     /// </summary>
     [Serializable]
     public abstract class ModelCompBase : IModelCompBase
     {
-        [LabelText("组件名称"),ReadOnly]
+        [LabelText("组件名称"), ReadOnly]
         public string Name;
-        [LabelText("组件状态"),ReadOnly]
+        [LabelText("组件状态"), ReadOnly]
         public ModelState State = ModelState.Close;                             //组件状态
         protected ModuleBase Module;
 

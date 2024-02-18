@@ -7,6 +7,7 @@ namespace LG
     /// <summary>
     /// 对象池管理组件
     /// </summary>
+    [ModelCompBase("对象池管理组件", 1)]
     public class ObjectPoolsComp : ModelCompBase<ObjectPoolModule>
     {
 
@@ -30,10 +31,6 @@ namespace LG
             {
                 pool.Value.Release();
             }
-            foreach (var pool in dpools)
-            {
-                pool.Value.Release();
-            }
         }
         /// <summary>
         /// 卸载对象池
@@ -44,13 +41,9 @@ namespace LG
             {
                 qpools[pool].Release();
             }
-            if (dpools.ContainsKey(pool))
-            {
-                dpools[pool].Release();
-            }
         }
         #region QueueObjectPool
-        public virtual void RegisterQueuePool(string poolname, Func<GameObject, UnityEngine.Object> cf)
+        public virtual void RegisterQueuePool(string poolname, Func<GameObject> cf)
         {
             if (qpools.ContainsKey(poolname))
             {
@@ -94,7 +87,7 @@ namespace LG
         /// 注册队列对象池
         /// </summary>
         /// <param name="cf"></param>
-        public virtual void RegisterDictionaryPool<T>(string poolname, Func<string, GameObject, T> cf) where T : UnityEngine.Object
+        public virtual void RegisterDictionaryPool<T>(string poolname, Func<string, T> cf) where T : UnityEngine.Object
         {
             if (dpools.ContainsKey(poolname))
             {

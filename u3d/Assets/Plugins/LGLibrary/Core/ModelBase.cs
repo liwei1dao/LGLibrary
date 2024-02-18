@@ -17,6 +17,7 @@ namespace LG
         Loading = 1,        //加载中状态
         LoadEnd = 2,        //加载完成状态
         Start = 3,          //启动状态
+        Runing = 4,         //运行中
     }
 
     public interface IModule
@@ -51,6 +52,7 @@ namespace LG
     //更新模块
     public interface IUpdataMode : IModule
     {
+        ModelState GetState();
         void Update(float time);
     }
     [Serializable]
@@ -83,6 +85,11 @@ namespace LG
         public ModuleBase()
         {
             State = ModelState.Close;
+        }
+
+        public ModelState GetState()
+        {
+            return this.State;
         }
 
         public virtual void LGLoad(params object[] agrs)
@@ -119,11 +126,12 @@ namespace LG
 
         public virtual void LGStart()
         {
+            State = ModelState.Start;
             for (int i = 0; i < Comps.Count; i++)
             {
                 Comps[i].LGStart();
             }
-            State = ModelState.Start;
+            State = ModelState.Runing;
         }
 
         public virtual void LGActivation()
@@ -141,7 +149,15 @@ namespace LG
             C Comp = new C();
             Type compType = Comp.GetType();
             ModelCompBaseAttribute compAttribute = (ModelCompBaseAttribute)Attribute.GetCustomAttribute(compType, typeof(ModelCompBaseAttribute));
-            Comp.Name = compAttribute.Name;
+            if (compAttribute != null)
+            {
+                Comp.Name = compAttribute.Name;
+            }
+            else
+            {
+                Comp.Name = compType.Name;
+            }
+
             Comps.Add(Comp);
             if (State > ModelState.Close)
                 Comp.LGLoad(this, agrs);
@@ -158,7 +174,7 @@ namespace LG
         /// <param name="ObjectPath"></param>
         /// <param name="Parnt"></param>
         /// <returns></returns>
-        public GameObject CreateObj(string BundleOrPath, string ObjectPath, GameObject Parnt)
+        public GameObject CreateObj(string BundleOrPath, string ObjectPath, GameObject Parnt = null)
         {
             GameObject obj = LoadAsset<GameObject>(BundleOrPath, ObjectPath);
             if (obj == null)
@@ -310,6 +326,32 @@ namespace LG
 
         #endregion
 
+        #region 对象池
+        public void NewPool(string poolname, Func<GameObject> cf)
+        {
+            ObjectPoolModule.Instance.NewObjectPool(poolname, cf);
+        }
+        public void NewPool<T>(string poolname, Func<string, T> cf) where T : UnityEngine.Object
+        {
+            ObjectPoolModule.Instance.NewObjectPool<T>(poolname, cf);
+        }
+        public T GetPool<T>(string poolname) where T : UnityEngine.Object
+        {
+            return ObjectPoolModule.Instance.Get<T>(poolname);
+        }
+        public void PushPool(string poolname, GameObject obj)
+        {
+            ObjectPoolModule.Instance.Push(poolname, obj);
+        }
+        public T GetPool<T>(string poolname, string key) where T : UnityEngine.Object
+        {
+            return ObjectPoolModule.Instance.Get<T>(poolname, key);
+        }
+        public void PushPool<T>(string poolname, string key, T obj) where T : UnityEngine.Object
+        {
+            ObjectPoolModule.Instance.Push<T>(poolname, key, obj);
+        }
+        #endregion
     }
 
     public abstract class ModuleBase<T> : ModuleBase where T : ModuleBase<T>, new()
@@ -349,16 +391,16 @@ namespace LG
 
         public override bool LoadEnd()
         {
-            Log.Debug("LoadEnd Check!");
+            // Log.Debug("LoadEnd Check!");
             if (base.LoadEnd())
             {
-                Log.Debug("LoadEnd Finsh!");
+                // Log.Debug("LoadEnd Finsh!");
                 LoadBackCall?.Invoke(instance);
                 return true;
             }
             else
             {
-                Log.Debug("LoadEnd Check False!");
+                // Log.Debug("LoadEnd Check False!");
                 return false;
             }
         }

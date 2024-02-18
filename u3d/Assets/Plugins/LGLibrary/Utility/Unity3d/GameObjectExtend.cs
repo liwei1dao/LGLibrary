@@ -54,6 +54,20 @@ namespace LG
                 Target.transform.localRotation = Quaternion.identity;
             }
         }
+
+
+        /// <summary>
+        /// 设置对象trans
+        /// </summary>
+        /// <param name="Target"></param>
+        /// <param name="Parent"></param>
+        public static void SetTrans(this GameObject Target, Transform Parent)
+        {
+            Target.transform.position = Parent.position;
+            Target.transform.localScale = Vector3.one;
+            Target.transform.rotation = Parent.rotation;
+        }
+
         /// <summary>
         /// 创建游戏对象
         /// </summary>
